@@ -4,7 +4,7 @@ Binder for GTA V Roleplay servers.
 1. Install `Python version 3.7 or further and less than 3.10`
 2. Go to root of project.
 3. Create virtual environment `python -m venv env`
-4. Activate it `env/Scripts/activate.bat`
+4. Activate it `env/Scripts/activate`
 5. Install requirements using `pip install -r requirements.txt`
 6. Enjoy coding!
 
