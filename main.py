@@ -304,7 +304,7 @@ class MainWindow(QMainWindow):
         self.ui.deleteProfileButton.clicked.connect(lambda: deleteWindow._show())
         self.ui.editProfileButton.clicked.connect(lambda: listWindow._show())
 
-        self.ui.adButton.clicked.connect(lambda: essentials.openLink("https://discord.gg/TGszUp6BWP"))
+        self.ui.adButton.clicked.connect(lambda: essentials.openLink("https://github.com/denipolis"))
 
         self.ui.closeButton.clicked.connect(lambda: self.closeButtonCallback())
         self.ui.minimizeButton.clicked.connect(lambda: self.closeButtonCallback())
