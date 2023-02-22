@@ -49,7 +49,7 @@ class Ui_ProfileDeleteWindow(object):
         self.centralwidget = QtWidgets.QWidget(ProfileDeleteWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 321))
+        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 311))
         self.listWidget.setObjectName("listWidget")
         self.deleteProfileButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteProfileButton.setGeometry(QtCore.QRect(130, 360, 121, 31))

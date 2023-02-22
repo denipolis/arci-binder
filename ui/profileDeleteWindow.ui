@@ -14,7 +14,7 @@
    <string>Удаление профиля</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/resources/logo.ico</normaloff>:/resources/logo.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -56,7 +56,7 @@ QListWidget {
       <x>10</x>
       <y>40</y>
       <width>361</width>
-      <height>321</height>
+      <height>311</height>
      </rect>
     </property>
    </widget>

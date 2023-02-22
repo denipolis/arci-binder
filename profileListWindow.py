@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_ProfileListWindow(object):
     def setupUi(self, ProfileListWindow):
         ProfileListWindow.setObjectName("ProfileListWindow")
-        ProfileListWindow.resize(378, 411)
+        ProfileListWindow.resize(378, 415)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/resources/logo.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         ProfileListWindow.setWindowIcon(icon)
@@ -49,10 +49,10 @@ class Ui_ProfileListWindow(object):
         self.centralwidget = QtWidgets.QWidget(ProfileListWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 321))
+        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 311))
         self.listWidget.setObjectName("listWidget")
         self.editProfileButton = QtWidgets.QPushButton(self.centralwidget)
-        self.editProfileButton.setGeometry(QtCore.QRect(110, 360, 181, 31))
+        self.editProfileButton.setGeometry(QtCore.QRect(120, 360, 161, 31))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(14)
@@ -85,7 +85,7 @@ class Ui_ProfileListWindow(object):
         self.title.setFont(font)
         self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.title.setStyleSheet("QLabel {\n"
-"    color: #fefefe;\n"
+"    color: rgb(220, 220, 220)\n"
 "}")
         self.title.setObjectName("title")
         ProfileListWindow.setCentralWidget(self.centralwidget)

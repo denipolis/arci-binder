@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>378</width>
-    <height>411</height>
+    <height>415</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Список профилей</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/resources/logo.ico</normaloff>:/resources/logo.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -56,16 +56,16 @@ QListWidget {
       <x>10</x>
       <y>40</y>
       <width>361</width>
-      <height>321</height>
+      <height>311</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="editProfileButton">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>120</x>
       <y>360</y>
-      <width>181</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -148,7 +148,7 @@ QListWidget {
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-	color: #fefefe;
+	color: rgb(220, 220, 220)
 }</string>
     </property>
     <property name="text">
@@ -168,8 +168,6 @@ QListWidget {
    </property>
   </action>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

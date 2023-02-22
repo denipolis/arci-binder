@@ -1,10 +1,13 @@
-import math
 from turtle import width
 from imports import *
+import os
 
 appIconPath = 'images/logo.png'
 
-db = sqlite3.connect("arcibinder.db", check_same_thread = False)
+if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
+    os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
+
+db = sqlite3.connect(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'), check_same_thread = False)
 dbcursor = db.cursor()
 
 basedir = os.path.dirname(__file__)
@@ -62,6 +65,9 @@ def updateProfiles():
         pass
 
     for profile in profilesList:
+        if not profile[2]:
+            return
+
         keyboard.add_hotkey(profile[2], playProfile, args=(str(profile[1]),))
 
 
@@ -88,6 +94,10 @@ class ProfileListWindow(QMainWindow):
 
     def editProfileButtonCallback(self):
         global editWindow
+
+        if not self.ui.listWidget.currentItem():
+            return
+
         editWindow.showWithUuid(nameToUuid(self.ui.listWidget.currentItem().text()))
 
     def updateListItems(self):
@@ -129,12 +139,19 @@ class ProfileEditWindow(QMainWindow):
         dbcursor.execute(f"SELECT * FROM 'profile_{uuid}'")
         profilestrings = dbcursor.fetchall()
 
-        self.ui.shortcut.hide()
-        self.ui.shortcutlabel.hide()
+        dbcursor.execute(f"SELECT hotkey FROM profilesData WHERE uuid='{uuid}'")
+        hotkey = dbcursor.fetchone()[0]
+
+
+        #self.ui.shortcut.hide()
+        #self.ui.shortcutlabel.hide()
         self.ui.profileName.hide()
         self.ui.profiileNameLabel.hide()
+        self.ui.createProfileButton.setText('Изменить')
 
         try:
+            self.ui.shortcut.setKeySequence(hotkey)
+
             if profilestrings[0] != "":
                 editWindow.ui.string1.setText(profilestrings[0][0])
                 editWindow.ui.cooldown1.setText(str(profilestrings[0][1]))
@@ -177,17 +194,28 @@ class ProfileEditWindow(QMainWindow):
         _uuid = self.saveduuid if self.saveduuid != -1 else str(uuid.uuid4().hex)
         _name = uuidToName(self.saveduuid) if self.saveduuid != -1 else self.ui.profileName.text()
 
-        dbcursor.execute(f"SELECT hotkey FROM profilesData WHERE uuid='{self.saveduuid}'")
-
-        _hotkey = str(dbcursor.fetchone()[0]) if self.saveduuid != -1 else self.ui.shortcut.keySequence().toString().split(',')[0] 
-
-        dbcursor.execute(f"SELECT * FROM profilesData WHERE hotkey='{self.ui.shortcut.keySequence().toString()}'")
-        profileWithCurrentHotkey = dbcursor.fetchall()
-
-        if len(profileWithCurrentHotkey) > 0:
+        if not _name:
             msgbox = QMessageBox()
             msgbox.setWindowTitle(f"ArciBinder")
-            msgbox.setText(f"Данная клавиша уже занята!\nУдалите бинд {profileWithCurrentHotkey[0][0]} или измените клавишу.")
+            msgbox.setText(f"Вы забыли ввести название профиля!")
+            msgbox.setIcon(QMessageBox.Icon.Critical)
+            msgbox.setStandardButtons(QMessageBox.StandardButton.Ok)
+            msgbox.exec()
+            return
+
+        dbcursor.execute(f"SELECT hotkey FROM profilesData WHERE uuid='{self.saveduuid}'")
+
+        _hotkey = self.ui.shortcut.keySequence().toString().split(',')[0]
+
+        dbcursor.execute(f"SELECT * FROM profilesData WHERE hotkey='{_hotkey}'")
+        profileWithCurrentHotkey = dbcursor.fetchall()
+
+        print(self.saveduuid == -1)
+
+        if len(profileWithCurrentHotkey) > 0 and self.saveduuid == -1:
+            msgbox = QMessageBox()
+            msgbox.setWindowTitle(f"ArciBinder")
+            msgbox.setText(f"Данная клавиша уже занята!\nУдалите профиль {profileWithCurrentHotkey[0][0]} или измените клавишу.")
             msgbox.setIcon(QMessageBox.Icon.Critical)
             msgbox.setStandardButtons(QMessageBox.StandardButton.Ok)
             msgbox.exec()
@@ -213,6 +241,7 @@ class ProfileEditWindow(QMainWindow):
         if self.ui.string7.text() != "" and self.ui.cooldown7.text() != "" and self.ui.cooldown1.text().isnumeric(): dbcursor.execute(f'''INSERT INTO 'profile_{_uuid}' VALUES('{str(self.ui.string7.text())}', '{int(self.ui.cooldown7.text())}')''')
         if self.ui.string8.text() != "" and self.ui.cooldown8.text() != "" and self.ui.cooldown1.text().isnumeric(): dbcursor.execute(f'''INSERT INTO 'profile_{_uuid}' VALUES('{str(self.ui.string8.text())}', '{int(self.ui.cooldown8.text())}')''')
         if self.ui.string9.text() != "" and self.ui.cooldown9.text() != "" and self.ui.cooldown1.text().isnumeric(): dbcursor.execute(f'''INSERT INTO 'profile_{_uuid}' VALUES('{str(self.ui.string9.text())}', '{int(self.ui.cooldown9.text())}')''')
+        #if self.ui.shortcut.keySequence().toString().split(',')[0] != "": dbcursor.execute(f'''INSERT INTO 'profilesData' VALUES('', '', '')''')
         
         db.commit()
         updateProfiles()
@@ -242,7 +271,7 @@ class ProfileDeleteWindow(QMainWindow):
 
     def deleteButtonCallback(self):
         msgbox = QMessageBox()
-        msgbox.setText(f"Вы действительно хотите удалить {self.ui.listWidget.currentItem().text()}?")
+        msgbox.setText(f"Вы действительно хотите удалить профиль {self.ui.listWidget.currentItem().text()}?")
         msgbox.setWindowTitle(f"ArciBinder")
         msgbox.setIcon(QMessageBox.Icon.Question)
         msgbox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)

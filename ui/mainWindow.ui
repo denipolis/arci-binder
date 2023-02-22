@@ -120,7 +120,7 @@ QListWidget {
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-	color: #fefefe;
+	color: rgb(220, 220, 220)
 }</string>
     </property>
     <property name="text">

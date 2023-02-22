@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
         self.title.setFont(font)
         self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.title.setStyleSheet("QLabel {\n"
-"    color: #fefefe;\n"
+"    color: rgb(220, 220, 220)\n"
 "}")
         self.title.setObjectName("title")
         self.editProfileButton = QtWidgets.QPushButton(self.centralwidget)
