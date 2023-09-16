@@ -83,6 +83,7 @@ class Ui_ProfileDeleteWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.title.setFont(font)
+        self.title.setMouseTracking(False)
         self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.title.setStyleSheet("QLabel {\n"
 "    color: #fefefe;\n"
@@ -92,12 +93,6 @@ class Ui_ProfileDeleteWindow(object):
         self.statusbar = QtWidgets.QStatusBar(ProfileDeleteWindow)
         self.statusbar.setObjectName("statusbar")
         ProfileDeleteWindow.setStatusBar(self.statusbar)
-        self.action = QtGui.QAction(ProfileDeleteWindow)
-        self.action.setObjectName("action")
-        self.action2 = QtGui.QAction(ProfileDeleteWindow)
-        self.action2.setObjectName("action2")
-        self.action_3 = QtGui.QAction(ProfileDeleteWindow)
-        self.action_3.setObjectName("action_3")
 
         self.retranslateUi(ProfileDeleteWindow)
         QtCore.QMetaObject.connectSlotsByName(ProfileDeleteWindow)
@@ -109,9 +104,6 @@ class Ui_ProfileDeleteWindow(object):
         self.closeButton.setText(_translate("ProfileDeleteWindow", "X"))
         self.minimizeButton.setText(_translate("ProfileDeleteWindow", "_"))
         self.title.setText(_translate("ProfileDeleteWindow", "<html><head/><body><p>Удаление профилей</p></body></html>"))
-        self.action.setText(_translate("ProfileDeleteWindow", "Сбросить базу данных"))
-        self.action2.setText(_translate("ProfileDeleteWindow", "Выйти"))
-        self.action_3.setText(_translate("ProfileDeleteWindow", "Их нету"))
 
 
 if __name__ == "__main__":

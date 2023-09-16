@@ -2,6 +2,7 @@ import sys
 
 import uuid
 import os
+from tendo import singleton
 
 import utils
 
@@ -263,4 +264,5 @@ def main():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
+    singleton.SingleInstance()
     main()

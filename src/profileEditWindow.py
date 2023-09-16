@@ -494,6 +494,7 @@ class Ui_ProfileEditWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.title.setFont(font)
+        self.title.setMouseTracking(False)
         self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.title.setStyleSheet("QLabel {\n"
 "    color: rgb(220, 220, 220)\n"
@@ -503,10 +504,6 @@ class Ui_ProfileEditWindow(object):
         self.statusbar = QtWidgets.QStatusBar(ProfileEditWindow)
         self.statusbar.setObjectName("statusbar")
         ProfileEditWindow.setStatusBar(self.statusbar)
-        self.action = QtGui.QAction(ProfileEditWindow)
-        self.action.setObjectName("action")
-        self.action2 = QtGui.QAction(ProfileEditWindow)
-        self.action2.setObjectName("action2")
 
         self.retranslateUi(ProfileEditWindow)
         QtCore.QMetaObject.connectSlotsByName(ProfileEditWindow)
@@ -540,8 +537,6 @@ class Ui_ProfileEditWindow(object):
         self.closeButton.setText(_translate("ProfileEditWindow", "X"))
         self.minimizeButton.setText(_translate("ProfileEditWindow", "_"))
         self.title.setText(_translate("ProfileEditWindow", "<html><head/><body><p>Редактор профиля</p></body></html>"))
-        self.action.setText(_translate("ProfileEditWindow", "Сбросить базу данных"))
-        self.action2.setText(_translate("ProfileEditWindow", "Выйти"))
 
 
 if __name__ == "__main__":
