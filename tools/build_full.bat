@@ -2,9 +2,9 @@
 
 color 7
 
-mkdir build\cache
-mkdir build\cache2
-mkdir build\output
+mkdir build\workcache
+mkdir build\runcache
+mkdir build\dist
 
 "env\Scripts\python.exe" tools\compileUI.py
 "env\Scripts\pyinstaller.exe" --noconfirm main.spec
@@ -12,5 +12,6 @@ mkdir build\output
 
 rd /s /q dist
 rd /s /q build\main
-rd /s /q build\cache
-rd /s /q build\cache2
+rd /s /q build\workcache
+rd /s /q build\runcache
+rd /s /q build\dist
