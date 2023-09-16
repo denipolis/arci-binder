@@ -198,7 +198,7 @@ class Ui_ProfileEditWindow(object):
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(720, 40, 191, 20))
+        self.label_2.setGeometry(QtCore.QRect(730, 40, 171, 20))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(10)
@@ -208,7 +208,7 @@ class Ui_ProfileEditWindow(object):
         self.label_2.setStyleSheet("QLabel {\n"
 "    color: rgb(220, 220, 220)\n"
 "}")
-        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(30, 80, 21, 31))
@@ -307,7 +307,7 @@ class Ui_ProfileEditWindow(object):
         self.label_11.setFont(font)
         self.label_11.setObjectName("label_11")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(320, 40, 61, 16))
+        self.label.setGeometry(QtCore.QRect(50, 40, 671, 16))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(12)
@@ -317,7 +317,7 @@ class Ui_ProfileEditWindow(object):
         self.label.setStyleSheet("QLabel {\n"
 "    color: rgb(220, 220, 220)\n"
 "}")
-        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label.setObjectName("label")
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
         self.label_10.setGeometry(QtCore.QRect(30, 260, 21, 31))
@@ -521,7 +521,7 @@ class Ui_ProfileEditWindow(object):
         self.cooldown4.setText(_translate("ProfileEditWindow", "0"))
         self.cooldown8.setText(_translate("ProfileEditWindow", "0"))
         self.label_6.setText(_translate("ProfileEditWindow", "4."))
-        self.label_2.setText(_translate("ProfileEditWindow", "Задержка перед написанием"))
+        self.label_2.setText(_translate("ProfileEditWindow", "Задержка (ms)"))
         self.label_4.setText(_translate("ProfileEditWindow", "2."))
         self.label_3.setText(_translate("ProfileEditWindow", "1."))
         self.cooldown9.setText(_translate("ProfileEditWindow", "0"))

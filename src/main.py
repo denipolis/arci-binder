@@ -111,13 +111,10 @@ class ProfileEditWindow(QMainWindow):
                 currentRowString = getattr(editWindow.ui, f'string{i+1}')
                 currentRowCooldown = getattr(editWindow.ui, f'cooldown{i+1}')
 
-                print(i, currentRowString)
-
                 if profileStrings[i][0] != "":
                     currentRowString.setText(profileStrings[i][0])
                     currentRowCooldown.setText(str(profileStrings[i][1]))
-        except Exception as e:
-            print(profileStrings)
+        except:
             pass
 
     def createProfileButtonCallback(self):

@@ -310,9 +310,9 @@ QListWidget {
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>730</x>
       <y>40</y>
-      <width>191</width>
+      <width>171</width>
       <height>20</height>
      </rect>
     </property>
@@ -330,10 +330,10 @@ QListWidget {
 }</string>
     </property>
     <property name="text">
-     <string>Задержка перед написанием</string>
+     <string>Задержка (ms)</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -517,9 +517,9 @@ QListWidget {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>50</x>
       <y>40</y>
-      <width>61</width>
+      <width>671</width>
       <height>16</height>
      </rect>
     </property>
@@ -540,7 +540,7 @@ QListWidget {
      <string>Текст</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
