@@ -6,16 +6,16 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{9D6C1B9B-8B69-4803-9761-F4DA08BBB0B1}
 AppName=ArciBinder
-AppVersion=1.0
-;AppVerName=ArciBinder 1.0
-AppPublisher=Arcanum
+AppVersion=1.1
+;AppVerName=ArciBinder 1.1
+AppPublisher=Denipolis
 DefaultDirName={autopf}\ArciBinder
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=build\
 OutputBaseFilename=ArciBinder_win32_installer
-SetupIconFile=images\logo.ico
+SetupIconFile=src\ui\images\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -29,8 +29,8 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "build\output\main\arcibinder_win32.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\output\main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\dist\main\arcibinder_win32.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\dist\main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

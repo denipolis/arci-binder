@@ -18,8 +18,6 @@ from tray import createTray
 from database import Database
 from binder import Binder
 
-appIconPath = 'images/logo.png'
-
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
     os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
 

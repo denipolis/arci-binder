@@ -1,17 +1,17 @@
 import PyInstaller.config
-PyInstaller.config.CONF['workpath'] = "build\\cache"
-PyInstaller.config.CONF['distpath'] = "build\\output"
-PyInstaller.config.CONF['runtime-tmpdir'] = "build\\cache2"
+PyInstaller.config.CONF['workpath'] = "build\\workcache"
+PyInstaller.config.CONF['distpath'] = "build\\dist"
+PyInstaller.config.CONF['runtime-tmpdir'] = "build\\runcache"
 
 # -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
 
 a = Analysis(
-    ['main.py'],
+    ['src/main.py'],
     pathex=[],
     binaries=[],
-    datas=[('images/*.png','./images')],
+    datas=[('src/ui/images/*.png','./ui/images')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -36,7 +36,7 @@ exe = EXE(
     upx=True,
     console=False,
     disable_windowed_traceback=False,
-    icon='images\logo.ico',
+    icon='src/ui/images/logo.ico',
     argv_emulation=False,
     uac_admin=False,
     target_arch=None,

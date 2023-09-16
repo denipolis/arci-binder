@@ -894,6 +894,9 @@ QListWidget {
       <bold>false</bold>
      </font>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
@@ -908,16 +911,6 @@ QListWidget {
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action">
-   <property name="text">
-    <string>Сбросить базу данных</string>
-   </property>
-  </action>
-  <action name="action2">
-   <property name="text">
-    <string>Выйти</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>
