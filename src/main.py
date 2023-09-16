@@ -4,7 +4,6 @@ import uuid
 import os
 
 import utils
-import psutil
 
 from PyQt6.QtCore import Qt, QPointF
 from PyQt6.QtGui import QIcon, QFontDatabase, QAction, QRegion, QMouseEvent
