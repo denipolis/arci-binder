@@ -1,8 +1,22 @@
-from turtle import width
-from imports import *
+import sys
+
+import uuid
 import os
+
+import utils
+
+from PyQt6.QtCore import Qt, QPointF
+from PyQt6.QtGui import QIcon, QFontDatabase, QAction, QRegion, QMouseEvent
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QSystemTrayIcon, QMenu, QWidgetAction, QLabel, QWidget
+
+from mainWindow import Ui_MainWindow
+from profileEditWindow import Ui_ProfileEditWindow
+from profileDeleteWindow import Ui_ProfileDeleteWindow
+from profileListWindow import Ui_ProfileListWindow
+
 from tray import createTray
 from database import Database
+from binder import Binder
 
 appIconPath = 'images/logo.png'
 
@@ -12,27 +26,13 @@ if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
 basedir = os.path.dirname(__file__)
 
 database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'))
+binder = Binder(database)
 app = QApplication(sys.argv)
         
 global listWindow
 global mainWindow
 global editWindow
 global deleteWindow
-
-def updateProfiles():
-    profiles = database.findAllProfiles()
-
-    try:
-        keyboard.clear_all_hotkeys() 
-    except:
-        pass
-
-    for profile in profiles:
-        if not profile[2]:
-            return
-
-        keyboard.add_hotkey(profile[2], playProfile, args=(str(profile[1]),))
-
 
 class ProfileListWindow(QMainWindow):
     def rebuildUI(self):
@@ -41,19 +41,18 @@ class ProfileListWindow(QMainWindow):
         self.ui.editProfileButton.clicked.connect(lambda: self.editProfileButtonCallback())
         self.ui.closeButton.clicked.connect(lambda: self.hide())
         self.ui.minimizeButton.clicked.connect(lambda: self.hide())
+        self.ui.listWidget.clear()
+
+        for profile in database.findAllProfiles():
+            self.ui.listWidget.addItem(profile[0])
 
     def __init__(self):
         super(ProfileListWindow, self).__init__()
         self.ui = Ui_ProfileListWindow()
         self.rebuildUI()
-        self.updateListItems()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-
-    def _show(self):
-        self.rebuildUI()
-        self.updateListItems()
-        self.show()
+        self.show = lambda: (self.rebuildUI(), self.showNormal())
 
     def editProfileButtonCallback(self):
         global editWindow
@@ -62,26 +61,28 @@ class ProfileListWindow(QMainWindow):
             return
 
         editWindow.showWithUuid(database.findUuidByName(self.ui.listWidget.currentItem().text()))
-
-    def updateListItems(self):
-        self.ui.listWidget.clear()
-
-        for profile in database.findAllProfiles():
-            self.ui.listWidget.addItem(profile[0])
     
     def closeEvent(self, event) -> None:
         event.ignore()
         self.hide()
+        
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.previousPosition = event.globalPosition()
+    
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        delta = QPointF(event.globalPosition() - self.previousPosition)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.previousPosition = event.globalPosition()
 
 
 class ProfileEditWindow(QMainWindow):
-    saveduuid = -1
     def rebuildUI(self):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui.createProfileButton.clicked.connect(lambda: self.createProfileButtonCallback())
         self.ui.closeButton.clicked.connect(lambda: self.hide())
         self.ui.minimizeButton.clicked.connect(lambda: self.hide())
+        self.saveduuid = -1
         
     def __init__(self):
         super(ProfileEditWindow, self).__init__()
@@ -89,11 +90,7 @@ class ProfileEditWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-    
-    def _show(self):
-        self.saveduuid = -1
-        self.rebuildUI()
-        self.show()
+        self.show = lambda: (self.rebuildUI(), self.showNormal())
 
     def showWithUuid(self, uuid: str):
         self.saveduuid = uuid
@@ -106,7 +103,6 @@ class ProfileEditWindow(QMainWindow):
         self.ui.profileName.hide()
         self.ui.profiileNameLabel.hide()
         self.ui.createProfileButton.setText('Изменить')
-
 
         try:
             self.ui.shortcut.setKeySequence(hotkey)
@@ -158,13 +154,20 @@ class ProfileEditWindow(QMainWindow):
         for i in range(1, 10):
             currentRowString = getattr(self.ui, f'string{i}').text()
             currentRowCooldown = getattr(self.ui, f'cooldown{i}').text()
-            # stupid method of getting any objects in self.ui
             if currentRowString != "" and currentRowCooldown != "" and currentRowCooldown.isnumeric():
                 database.addStringToProfile(_uuid, currentRowString, int(currentRowCooldown))
 
-        updateProfiles()
+        binder.updateProfiles()
         self.rebuildUI()
         self.hide()
+
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.previousPosition = event.globalPosition()
+    
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        delta = QPointF(event.globalPosition() - self.previousPosition)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.previousPosition = event.globalPosition()
 
 class ProfileDeleteWindow(QMainWindow):
     def rebuildUI(self):
@@ -173,7 +176,10 @@ class ProfileDeleteWindow(QMainWindow):
         self.ui.deleteProfileButton.clicked.connect(lambda:  self.deleteButtonCallback())
         self.ui.closeButton.clicked.connect(lambda: self.hide())
         self.ui.minimizeButton.clicked.connect(lambda: self.hide())
-        self.updateListItems()
+        self.ui.listWidget.clear()
+
+        for profile in database.findAllProfiles():
+            self.ui.listWidget.addItem(profile[0])
 
     def __init__(self):
         super(ProfileDeleteWindow, self).__init__()
@@ -181,11 +187,7 @@ class ProfileDeleteWindow(QMainWindow):
         self.rebuildUI()
         
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-
-    def _show(self):
-        self.rebuildUI()
-        self.updateListItems()
-        self.show()
+        self.show = lambda: ( self.rebuildUI(), self.showNormal() )
 
     def deleteButtonCallback(self):
         msgbox = QMessageBox()
@@ -202,22 +204,25 @@ class ProfileDeleteWindow(QMainWindow):
             except:
                 pass
 
-            updateProfiles()
+            binder.updateProfiles()
             self.ui.listWidget.takeItem(self.ui.listWidget.currentIndex().row())
 
-    def updateListItems(self):
-        self.ui.listWidget.clear()
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.previousPosition = event.globalPosition()
+    
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        delta = QPointF(event.globalPosition() - self.previousPosition)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.previousPosition = event.globalPosition()
 
-        for profile in database.findAllProfiles():
-            self.ui.listWidget.addItem(profile[0])
 
 class MainWindow(QMainWindow):
     def rebuildUI(self):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        self.ui.createProfileButton.clicked.connect(lambda: editWindow._show())
-        self.ui.deleteProfileButton.clicked.connect(lambda: deleteWindow._show())
-        self.ui.editProfileButton.clicked.connect(lambda: listWindow._show())
+        self.ui.createProfileButton.clicked.connect(lambda: editWindow.show())
+        self.ui.deleteProfileButton.clicked.connect(lambda: deleteWindow.show())
+        self.ui.editProfileButton.clicked.connect(lambda: listWindow.show())
 
         self.ui.adButton.clicked.connect(lambda: utils.openLink("https://github.com/denipolis"))
 
@@ -226,7 +231,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-        QFontDatabase.addApplicationFont("fonts/Rubik-Regular.ttf")
+        QFontDatabase.addApplicationFont("../fonts/Rubik-Regular.ttf")
         self.ui = Ui_MainWindow()
         self.rebuildUI()
 
@@ -236,24 +241,19 @@ class MainWindow(QMainWindow):
     
     def closeButtonCallback(self):
         self.hide()
-        self.trayicon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трей-меню.", msecs=2000)
+        self.trayicon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
-
-def playProfile(profileName: str):
-    if not utils.getActiveWindowTitle().find("RAGE Multiplayer"):
-        return
-
-    profileStrings = database.findStringsInProfile(profileName)
-
-    for profileString in profileStrings:
-        time.sleep(float(profileString[1])/1000)
-        utils.singleKeyPress("T")
-        keyboard.write(str(profileString[0]))
-        utils.singleKeyPress("ENTER")
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.previousPosition = event.globalPosition()
+    
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        delta = QPointF(event.globalPosition() - self.previousPosition)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.previousPosition = event.globalPosition()
 
 def main():
     database.initializeProfiles()
-    updateProfiles()
+    binder.updateProfiles()
 
     global mainWindow, editWindow, deleteWindow, listWindow
 

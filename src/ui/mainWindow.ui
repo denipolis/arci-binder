@@ -168,7 +168,7 @@ QPushButton {
 }</string>
     </property>
     <property name="text">
-     <string>Github разработчика</string>
+     <string>GitHub разработчика</string>
     </property>
    </widget>
    <widget class="QPushButton" name="closeButton">

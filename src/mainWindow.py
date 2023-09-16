@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
         self.deleteProfileButton.setText(_translate("MainWindow", "Удалить профиль"))
         self.title.setText(_translate("MainWindow", "<html><head/><body><p>ArciBinder</p></body></html>"))
         self.editProfileButton.setText(_translate("MainWindow", "Редактировать профили"))
-        self.adButton.setText(_translate("MainWindow", "Github разработчика"))
+        self.adButton.setText(_translate("MainWindow", "GitHub разработчика"))
         self.closeButton.setText(_translate("MainWindow", "X"))
         self.minimizeButton.setText(_translate("MainWindow", "_"))
         self.action.setText(_translate("MainWindow", "Сбросить базу данных"))
