@@ -7,9 +7,9 @@ basedir = os.path.dirname(__file__)
 
 def createTray(self):
   self.trayicon = QSystemTrayIcon(self)
-  self.trayicon.setIcon(QIcon(os.path.join(basedir, "../images/logo.png")))
-  trayShowAction = QAction("Открыть", icon=QIcon(QIcon(os.path.join(basedir, "../images/show.png"))), parent=self)
-  trayQuitAction = QAction("Выйти", icon=QIcon(QIcon(os.path.join(basedir, "../images/cross.png"))), parent=self)
+  self.trayicon.setIcon(QIcon(os.path.join(basedir, "ui/images/logo32x32.png")))
+  trayShowAction = QAction("Открыть", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/show.png"))), parent=self)
+  trayQuitAction = QAction("Выйти", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/cross.png"))), parent=self)
 
   trayShowAction.triggered.connect(lambda: self.show())
   trayQuitAction.triggered.connect(lambda: utils.quit())

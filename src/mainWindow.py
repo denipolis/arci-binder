@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'ui/mainWindow.ui'
+# Form implementation generated from reading ui file 'src/ui/mainWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.0
 #
@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
         self.deleteProfileButton.setStyleSheet("")
         self.deleteProfileButton.setObjectName("deleteProfileButton")
         self.title = QtWidgets.QLabel(self.centralwidget)
-        self.title.setGeometry(QtCore.QRect(10, 10, 81, 16))
+        self.title.setGeometry(QtCore.QRect(10, 10, 81, 21))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(12)
@@ -120,12 +120,6 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.action = QtGui.QAction(MainWindow)
-        self.action.setObjectName("action")
-        self.action2 = QtGui.QAction(MainWindow)
-        self.action2.setObjectName("action2")
-        self.action_3 = QtGui.QAction(MainWindow)
-        self.action_3.setObjectName("action_3")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -135,14 +129,11 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Главное меню"))
         self.createProfileButton.setText(_translate("MainWindow", "Создать профиль"))
         self.deleteProfileButton.setText(_translate("MainWindow", "Удалить профиль"))
-        self.title.setText(_translate("MainWindow", "<html><head/><body><p>ArciBinder</p></body></html>"))
+        self.title.setText(_translate("MainWindow", "ArciBinder"))
         self.editProfileButton.setText(_translate("MainWindow", "Редактировать профили"))
         self.adButton.setText(_translate("MainWindow", "GitHub разработчика"))
         self.closeButton.setText(_translate("MainWindow", "X"))
         self.minimizeButton.setText(_translate("MainWindow", "_"))
-        self.action.setText(_translate("MainWindow", "Сбросить базу данных"))
-        self.action2.setText(_translate("MainWindow", "Выйти"))
-        self.action_3.setText(_translate("MainWindow", "пон"))
 
 
 if __name__ == "__main__":

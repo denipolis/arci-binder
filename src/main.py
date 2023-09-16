@@ -65,7 +65,7 @@ class ProfileListWindow(QMainWindow):
     def closeEvent(self, event) -> None:
         event.ignore()
         self.hide()
-        
+
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.previousPosition = event.globalPosition()
     
@@ -231,7 +231,6 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-        QFontDatabase.addApplicationFont("../fonts/Rubik-Regular.ttf")
         self.ui = Ui_MainWindow()
         self.rebuildUI()
 
@@ -257,7 +256,7 @@ def main():
 
     global mainWindow, editWindow, deleteWindow, listWindow
 
-    app.setWindowIcon(QIcon(os.path.join(basedir, "images/logo.ico")))
+    app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
 
     mainWindow = MainWindow()
     editWindow = ProfileEditWindow()

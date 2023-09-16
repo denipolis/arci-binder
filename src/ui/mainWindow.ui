@@ -104,7 +104,7 @@ QListWidget {
       <x>10</x>
       <y>10</y>
       <width>81</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -124,7 +124,7 @@ QListWidget {
 }</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ArciBinder&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>ArciBinder</string>
     </property>
    </widget>
    <widget class="QPushButton" name="editProfileButton">
@@ -221,24 +221,7 @@ QPushButton::hover {
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action">
-   <property name="text">
-    <string>Сбросить базу данных</string>
-   </property>
-  </action>
-  <action name="action2">
-   <property name="text">
-    <string>Выйти</string>
-   </property>
-  </action>
-  <action name="action_3">
-   <property name="text">
-    <string>пон</string>
-   </property>
-  </action>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
