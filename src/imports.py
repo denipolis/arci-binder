@@ -6,7 +6,7 @@ import keyboard
 import time
 import os
 
-import essentials
+import utils
 
 from PyQt6 import QtCore
 from PyQt6.QtCore import Qt
