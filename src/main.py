@@ -2,9 +2,9 @@ import sys
 
 import uuid
 import os
-from tendo import singleton
 
 import utils
+import psutil
 
 from PyQt6.QtCore import Qt, QPointF
 from PyQt6.QtGui import QIcon, QFontDatabase, QAction, QRegion, QMouseEvent
@@ -18,6 +18,7 @@ from profileListWindow import Ui_ProfileListWindow
 from tray import createTray
 from database import Database
 from binder import Binder
+
 
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
     os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
@@ -264,5 +265,4 @@ def main():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
-    singleton.SingleInstance()
     main()
