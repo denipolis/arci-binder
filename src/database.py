@@ -17,30 +17,42 @@ class Database:
     self.cursor.execute(f"SELECT name FROM profilesData WHERE uuid='{uuid}'")
     return str(self.cursor.fetchone()[0])
   
-  def findUuidByName(self, name) -> str:
+  def findUuidByName(self, name: str) -> str:
     self.cursor.execute(f"SELECT uuid FROM profilesData WHERE name='{name}'")
     return str(self.cursor.fetchone()[0])
   
-  def findHotkeyByUuid(self, uuid) -> str:
+  def findHotkeyByUuid(self, uuid: str):
     self.cursor.execute(f"SELECT hotkey FROM profilesData WHERE uuid='{uuid}'")
     return self.cursor.fetchone()[0]
 
-  def findAllProfiles(self) -> str:
+  def findAllProfiles(self):
     self.cursor.execute(f'SELECT * FROM profilesData')
     return self.cursor.fetchall()
   
-  def findStringsInProfile(self, uuid) -> str:
+  def findStringsInProfile(self, uuid: str):
     self.cursor.execute(f'SELECT * FROM profile_{uuid}')
     return self.cursor.fetchall()
   
-  def findProfileByHotkey(self, hotkey) -> str:
+  def findProfileByHotkey(self, hotkey: str):
     self.cursor.execute(f"SELECT * FROM profilesData WHERE hotkey='{hotkey}'")
-    return self.cursor.fetchall()
+    return self.cursor.fetchone()
+  
+  def findProfileByUuid(self, uuid: str):
+    self.cursor.execute(f"SELECT * FROM profilesData WHERE uuid='{uuid}'")
+    return self.cursor.fetchone()
 
   def deleteProfile(self, uuid) -> None:
-    self.cursor.execute(f"DELETE FROM 'profilesData' WHERE uuid='{uuid}'")
-    self.cursor.execute(f"DROP TABLE 'profile_{uuid}'")
+    self.cursor.execute(f"DELETE FROM profilesData WHERE uuid='{uuid}'")
+    self.cursor.execute(f"DROP TABLE profile_{uuid}")
     self.database.commit()
+
+  def isProfileExistsByUuid(self, uuid) -> None:
+    self.cursor.execute(f"SELECT * FROM profilesData WHERE uuid='{uuid}'")
+    return self.cursor.fetchone() != None
+  
+  def isProfileExistsByHotkey(self, hotkey) -> None:
+    self.cursor.execute(f"SELECT * FROM profilesData WHERE hotkey='{hotkey}'")
+    return self.cursor.fetchone() != None
 
   def createProfile(self, name, uuid, hotkey) -> None:
     self.cursor.execute(f'''
@@ -48,8 +60,6 @@ class Database:
             (message text, cooldown int)
         ''')
     self.cursor.execute(f'''INSERT INTO profilesData VALUES('{name}', '{uuid}', '{hotkey}')''')
-
-
     self.database.commit()
 
   def addStringToProfile(self, uuid, string, cooldown) -> None:

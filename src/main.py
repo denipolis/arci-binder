@@ -1,6 +1,6 @@
 import sys
 
-import uuid
+import uuid as uuidlib
 import os
 
 import utils
@@ -59,7 +59,7 @@ class ProfileListWindow(QMainWindow):
         if not self.ui.listWidget.currentItem():
             return
 
-        editWindow.showWithUuid(database.findUuidByName(self.ui.listWidget.currentItem().text()))
+        editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text()))
     
     def closeEvent(self, event) -> None:
         event.ignore()
@@ -81,7 +81,6 @@ class ProfileEditWindow(QMainWindow):
         self.ui.createProfileButton.clicked.connect(lambda: self.createProfileButtonCallback())
         self.ui.closeButton.clicked.connect(lambda: self.hide())
         self.ui.minimizeButton.clicked.connect(lambda: self.hide())
-        self.saveduuid = -1
         
     def __init__(self):
         super(ProfileEditWindow, self).__init__()
@@ -89,38 +88,35 @@ class ProfileEditWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.show = lambda: (self.rebuildUI(), self.showNormal())
+        self.show = lambda uuid=None: (self.rebuildUI(), self.__showWithUuid(uuid))
 
-    def showWithUuid(self, uuid: str):
-        self.saveduuid = uuid
-        editWindow.show()
+    def __showWithUuid(self, uuid: str) -> None:
+        self.showNormal()
         self.rebuildUI()
 
-        profileStrings = database.findStringsInProfile(uuid)
-        hotkey = database.findHotkeyByUuid(uuid)
+        if uuid: # when editing
+            profileStrings = database.findStringsInProfile(uuid)
+            profileHotkey = database.findHotkeyByUuid(uuid)
+            profileName = database.findProfileByUuid(uuid)[0]
 
-        self.ui.profileName.hide()
-        self.ui.profiileNameLabel.hide()
-        self.ui.createProfileButton.setText('Изменить')
+            self.uuid = uuid
 
-        try:
-            self.ui.shortcut.setKeySequence(hotkey)
+            self.ui.createProfileButton.setText('Изменить')
+            self.ui.profileName.setText(profileName)
+            self.ui.shortcut.setKeySequence(profileHotkey)
 
-            for i in range(0, 9):
+            for i in range(0, len(profileStrings)):
                 currentRowString = getattr(editWindow.ui, f'string{i+1}')
                 currentRowCooldown = getattr(editWindow.ui, f'cooldown{i+1}')
 
                 if profileStrings[i][0] != "":
                     currentRowString.setText(profileStrings[i][0])
-                    currentRowCooldown.setText(str(profileStrings[i][1]))
-        except:
-            pass
+                    currentRowCooldown.setText(str(profileStrings[i][1])) 
+        else:
+            self.uuid = uuidlib.uuid4().hex
 
     def createProfileButtonCallback(self):
-        _uuid = self.saveduuid if self.saveduuid != -1 else str(uuid.uuid4().hex)
-        _name = database.findNameByUuid(self.saveduuid) if self.saveduuid != -1 else self.ui.profileName.text()
-
-        if not _name:
+        if not self.ui.profileName.text():
             msgbox = QMessageBox()
             msgbox.setWindowTitle(f"ArciBinder")
             msgbox.setText(f"Вы забыли ввести название профиля!")
@@ -129,32 +125,30 @@ class ProfileEditWindow(QMainWindow):
             msgbox.exec()
             return
 
-        _hotkey = self.ui.shortcut.keySequence().toString().split(',')[0]
+        hotkey = self.ui.shortcut.keySequence().toString().split(',')[0]
+        profileWithHotkey = database.findProfileByHotkey(hotkey)
+        
+        if database.isProfileExistsByUuid(self.uuid):
+            database.deleteProfile(self.uuid)
 
-        profileWithHotkey = database.findProfileByHotkey(_hotkey)
-
-        if len(profileWithHotkey) > 0 and self.saveduuid == -1:
+        if database.isProfileExistsByHotkey(hotkey):
             msgbox = QMessageBox()
             msgbox.setWindowTitle(f"ArciBinder")
-            msgbox.setText(f"Данная клавиша уже занята!\nУдалите профиль {profileWithHotkey[0][0]} или измените клавишу.")
+            msgbox.setText(f"Данная клавиша уже занята!\nУдалите профиль \"{profileWithHotkey[0]}\" или измените клавишу.")
             msgbox.setIcon(QMessageBox.Icon.Critical)
             msgbox.setStandardButtons(QMessageBox.StandardButton.Ok)
             msgbox.exec()
             return
 
-        if self.saveduuid != -1:
-            database.deleteProfile(_uuid)
-
-        database.createProfile(_name, _uuid, _hotkey)
+        database.createProfile(self.ui.profileName.text(), self.uuid, hotkey)
 
         for i in range(1, 10):
             currentRowString = getattr(self.ui, f'string{i}').text()
             currentRowCooldown = getattr(self.ui, f'cooldown{i}').text()
             if currentRowString != "" and currentRowCooldown != "" and currentRowCooldown.isnumeric():
-                database.addStringToProfile(_uuid, currentRowString, int(currentRowCooldown))
+                database.addStringToProfile(self.uuid, currentRowString, int(currentRowCooldown))
 
         binder.updateProfiles()
-        self.rebuildUI()
         self.hide()
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
