@@ -5,21 +5,24 @@ import utils
 
 basedir = os.path.dirname(__file__)
 
-def createTray(self):
-  self.trayicon = QSystemTrayIcon(self)
-  self.trayicon.setIcon(QIcon(os.path.join(basedir, "ui/images/logo32x32.png")))
-  trayShowAction = QAction("Открыть", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/show.png"))), parent=self)
-  trayQuitAction = QAction("Выйти", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/cross.png"))), parent=self)
+class TrayIcon(QSystemTrayIcon):
+  def __init__(self, mainWindow):
+    super(QSystemTrayIcon, self).__init__()
+    self.setIcon(QIcon(os.path.join(basedir, "ui/images/logo32x32.png")))
+    trayShowAction = QAction("Открыть", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/show.png"))), parent=self)
+    trayQuitAction = QAction("Выйти", icon=QIcon(QIcon(os.path.join(basedir, "ui/images/cross.png"))), parent=self)
 
-  trayShowAction.triggered.connect(lambda: self.show())
-  trayQuitAction.triggered.connect(lambda: utils.quit())
+    trayShowAction.triggered.connect(lambda: mainWindow.show())
+    trayQuitAction.triggered.connect(lambda: utils.quit())
 
-  traymenu = QMenu()
-  trayTitle = traymenu.addAction("ArciBinder")
-  trayTitle.setEnabled(False)
-  traymenu.addSeparator()
-  traymenu.addAction(trayShowAction)
-  traymenu.addAction(trayQuitAction)
+    self.messageClicked.connect(lambda: mainWindow.show())
+    self.activated.connect(lambda reason: mainWindow.show() if QSystemTrayIcon.ActivationReason.Trigger == reason else None)
 
-  self.trayicon.setContextMenu(traymenu)
-  self.trayicon.show()
+    self.menu = QMenu()
+    self.menu.addAction("ArciBinder").setEnabled(False)
+    self.menu.addSeparator()
+    self.menu.addAction(trayShowAction)
+    self.menu.addAction(trayQuitAction)
+
+    self.setContextMenu(self.menu)
+    self.show()

@@ -6,18 +6,17 @@ import os
 import utils
 
 from PyQt6.QtCore import Qt, QPointF
-from PyQt6.QtGui import QIcon, QFontDatabase, QAction, QRegion, QMouseEvent
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QSystemTrayIcon, QMenu, QWidgetAction, QLabel, QWidget
+from PyQt6.QtGui import QIcon, QMouseEvent
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from mainWindow import Ui_MainWindow
 from profileEditWindow import Ui_ProfileEditWindow
 from profileDeleteWindow import Ui_ProfileDeleteWindow
 from profileListWindow import Ui_ProfileListWindow
 
-from tray import createTray
+from tray import TrayIcon
 from database import Database
 from binder import Binder
-
 
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
     os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
@@ -27,11 +26,6 @@ basedir = os.path.dirname(__file__)
 database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'))
 binder = Binder(database)
 app = QApplication(sys.argv)
-        
-global listWindow
-global mainWindow
-global editWindow
-global deleteWindow
 
 class ProfileListWindow(QMainWindow):
     def rebuildUI(self):
@@ -54,7 +48,6 @@ class ProfileListWindow(QMainWindow):
         self.show = lambda: (self.rebuildUI(), self.showNormal())
 
     def editProfileButtonCallback(self):
-        global editWindow
 
         if not self.ui.listWidget.currentItem():
             return
@@ -73,6 +66,7 @@ class ProfileListWindow(QMainWindow):
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.previousPosition = event.globalPosition()
 
+listWindow = ProfileListWindow()
 
 class ProfileEditWindow(QMainWindow):
     def rebuildUI(self):
@@ -159,6 +153,8 @@ class ProfileEditWindow(QMainWindow):
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.previousPosition = event.globalPosition()
 
+editWindow = ProfileEditWindow()
+
 class ProfileDeleteWindow(QMainWindow):
     def rebuildUI(self):
         self.ui.setupUi(self)
@@ -205,6 +201,7 @@ class ProfileDeleteWindow(QMainWindow):
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.previousPosition = event.globalPosition()
 
+deleteWindow = ProfileDeleteWindow()
 
 class MainWindow(QMainWindow):
     def rebuildUI(self):
@@ -225,12 +222,10 @@ class MainWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-
-        createTray(self)
     
     def closeButtonCallback(self):
         self.hide()
-        self.trayicon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
+        trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.previousPosition = event.globalPosition()
@@ -240,18 +235,18 @@ class MainWindow(QMainWindow):
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.previousPosition = event.globalPosition()
 
+mainWindow = MainWindow()
+
+trayIcon = TrayIcon(mainWindow)
+
 def main():
     database.initializeProfiles()
     binder.updateProfiles()
 
-    global mainWindow, editWindow, deleteWindow, listWindow
-
+    app.setApplicationName('ArciBinder')
+    app.setApplicationDisplayName('ArciBinder')
+    app.setApplicationVersion('1.1.1')
     app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
-
-    mainWindow = MainWindow()
-    editWindow = ProfileEditWindow()
-    deleteWindow = ProfileDeleteWindow()
-    listWindow = ProfileListWindow()
 
     mainWindow.show()
 
