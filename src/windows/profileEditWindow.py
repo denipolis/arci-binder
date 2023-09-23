@@ -428,7 +428,7 @@ class Ui_ProfileEditWindow(object):
         self.cooldown9.setText(_translate("ProfileEditWindow", "0"))
         self.minimizeButton.setText(_translate("ProfileEditWindow", "_"))
         self.closeButton.setText(_translate("ProfileEditWindow", "X"))
-        self.title.setText(_translate("ProfileEditWindow", "Редактирование"))
+        self.title.setText(_translate("ProfileEditWindow", "Редактор"))
 
 
 if __name__ == "__main__":

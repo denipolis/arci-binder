@@ -9,14 +9,14 @@ from PyQt6.QtCore import Qt, QPointF
 from PyQt6.QtGui import QIcon, QMouseEvent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
-from mainWindow import Ui_MainWindow
-from profileEditWindow import Ui_ProfileEditWindow
+from windows.mainWindow import Ui_MainWindow
+from windows.profileEditWindow import Ui_ProfileEditWindow
 
 from tray import TrayIcon
 from database import Database
 from binder import Binder
 
-from typing import Callable, Optional
+from typing import Callable
 from enum import Enum
 
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
@@ -33,7 +33,7 @@ class ProfileEditWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui.createProfileButton.clicked.connect(lambda: self.createProfileButtonCallback())
-        self.ui.closeButton.clicked.connect(lambda: self.hide())
+        self.ui.closeButton.clicked.connect(lambda: ( self.hide(), mainWindow.show() ))
         self.ui.minimizeButton.clicked.connect(lambda: self.hide())
         
     def __init__(self):
@@ -71,12 +71,7 @@ class ProfileEditWindow(QMainWindow):
 
     def createProfileButtonCallback(self):
         if not self.ui.profileName.text():
-            msgbox = QMessageBox()
-            msgbox.setWindowTitle(f"ArciBinder")
-            msgbox.setText(f"Вы забыли ввести название профиля!")
-            msgbox.setIcon(QMessageBox.Icon.Critical)
-            msgbox.setStandardButtons(QMessageBox.StandardButton.Ok)
-            msgbox.exec()
+            QMessageBox(QMessageBox.Icon.Critical, "ArciBinder", "Вы забыли ввести название профиля!", QMessageBox.StandardButton.Ok).exec()
             return
 
         hotkey = self.ui.shortcut.keySequence().toString().split(',')[0]
@@ -86,12 +81,7 @@ class ProfileEditWindow(QMainWindow):
             database.deleteProfile(self.uuid)
 
         if database.isProfileExistsByHotkey(hotkey):
-            msgbox = QMessageBox()
-            msgbox.setWindowTitle(f"ArciBinder")
-            msgbox.setText(f"Данная клавиша уже занята!\nУдалите профиль \"{profileWithHotkey[0]}\" или измените клавишу.")
-            msgbox.setIcon(QMessageBox.Icon.Critical)
-            msgbox.setStandardButtons(QMessageBox.StandardButton.Ok)
-            msgbox.exec()
+            QMessageBox(QMessageBox.Icon.Critical, "ArciBinder", f"Выбранная клавиша уже занята!\nУдалите профиль \"{profileWithHotkey[0]}\" или измените клавишу.", QMessageBox.StandardButton.Ok).exec()
             return
 
         database.createProfile(self.ui.profileName.text(), self.uuid, hotkey)
@@ -124,7 +114,7 @@ class MainWindow(QMainWindow):
     def rebuildUI(self):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        self.ui.newProfileButton.clicked.connect(lambda: self.newButtonCallback())
+        self.ui.createProfileButton.clicked.connect(lambda: self.createButtonCallback())
         self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteProfileCallback())
         self.ui.editProfileButton.clicked.connect(lambda: editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text())))
 
@@ -136,6 +126,10 @@ class MainWindow(QMainWindow):
         self.ui.settingsButton.clicked.connect(lambda: self.changeWidget(MainMenuType.SETTINGS))
         self.ui.listWidget.clear()
 
+        self.ui.listWidget.clicked.connect(lambda: self.handleListWidgetClick())
+
+        self.ui.autorunCheckbox.stateChanged.connect(lambda state: utils.addToAutoRun())
+
         for profile in database.findAllProfiles():
             self.ui.listWidget.addItem(profile[0])
 
@@ -146,7 +140,11 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.show = lambda: ( self.rebuildUI(), self.showNormal() )
     
-    def newButtonCallback(self):
+    def handleListWidgetClick(self):
+        self.ui.editProfileButton.setDisabled(self.ui.listWidget.currentItem() == None)
+        self.ui.deleteProfileButton.setDisabled(self.ui.listWidget.currentItem() == None)
+
+    def createButtonCallback(self):
         self.hide()
         editWindow.show()
 
@@ -155,19 +153,10 @@ class MainWindow(QMainWindow):
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
     def deleteProfileCallback(self):
-        msgbox = QMessageBox()
-        msgbox.setText(f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?")
-        msgbox.setWindowTitle(f"ArciBinder")
-        msgbox.setIcon(QMessageBox.Icon.Question)
-        msgbox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-
-        answer = msgbox.exec()
+        answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().txt()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
 
         if answer == QMessageBox.StandardButton.Yes:
-            try:
-                database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))
-            except:
-                pass
+            database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))
 
             binder.updateProfiles()
             self.ui.listWidget.takeItem(self.ui.listWidget.currentIndex().row())
@@ -198,7 +187,7 @@ def main():
 
     app.setApplicationName('ArciBinder')
     app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion('1.1.1')
+    app.setApplicationVersion('1.2')
     app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
 
     mainWindow.show()

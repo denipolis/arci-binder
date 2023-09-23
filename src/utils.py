@@ -1,6 +1,8 @@
 import keyboard
 import time
 import os
+import winreg as reg
+import sys
 from ctypes import wintypes, windll, create_unicode_buffer
 
 def singleKeyPress(key: str):
@@ -25,3 +27,10 @@ def getActiveWindowTitle() -> str:
 
 def openURL(link: str):
     os.system(f"start \"\" {link}")
+
+def addToAutoRun():
+    #pth = os.path.dirname(os.path.realpath(__file__))
+    print(sys.argv[0])
+
+    #key = reg.OpenKey("HKEY_CURRENT_USER", "Software\Microsoft\Windows\CurrentVersion\Run", 0, reg.KEY_ALL_ACCESS)
+    #reg.SetValueEx(key, "ArciBinder", 0, reg.REG_SZ, )

@@ -35,6 +35,10 @@ QPushButton {
 	border-radius: 5px;
 }
 
+QPushButton::disabled {
+    background-color: #202024;
+}
+
 QPushButton::hover {
     background-color: #222a33;
 }
@@ -226,6 +230,32 @@ QPushButton::pressed {
       <string>Настройки</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="trayCheckbox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Прятать приложение в трей при нажатии кнопки &quot;Закрыть&quot;</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="autorunCheckbox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Запускать приложение вместе с системой (автозапуск)</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="profilesWidget" native="true">
     <property name="enabled">
@@ -242,7 +272,7 @@ QPushButton::pressed {
     <property name="styleSheet">
      <string notr="true"/>
     </property>
-    <widget class="QPushButton" name="newProfileButton">
+    <widget class="QPushButton" name="createProfileButton">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -265,6 +295,9 @@ QPushButton::pressed {
      </property>
     </widget>
     <widget class="QPushButton" name="editProfileButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -287,6 +320,9 @@ QPushButton::pressed {
      </property>
     </widget>
     <widget class="QPushButton" name="deleteProfileButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -363,17 +399,17 @@ QPushButton::pressed {
      </property>
     </widget>
     <zorder>listWidget</zorder>
-    <zorder>newProfileButton</zorder>
+    <zorder>createProfileButton</zorder>
     <zorder>editProfileButton</zorder>
     <zorder>deleteProfileButton</zorder>
     <zorder>profilesTitle</zorder>
     <zorder>label</zorder>
    </widget>
-   <zorder>settingsWidget</zorder>
-   <zorder>navigationWidget</zorder>
    <zorder>profilesWidget</zorder>
+   <zorder>settingsWidget</zorder>
    <zorder>minimizeButton</zorder>
    <zorder>closeButton</zorder>
+   <zorder>navigationWidget</zorder>
   </widget>
  </widget>
  <resources/>

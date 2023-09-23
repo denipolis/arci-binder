@@ -32,6 +32,10 @@ class Ui_MainWindow(object):
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
+"QPushButton::disabled {\n"
+"    background-color: #202024;\n"
+"}\n"
+"\n"
 "QPushButton::hover {\n"
 "    background-color: #222a33;\n"
 "}\n"
@@ -110,20 +114,27 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.settingsTitle.setFont(font)
         self.settingsTitle.setObjectName("settingsTitle")
+        self.trayCheckbox = QtWidgets.QCheckBox(self.settingsWidget)
+        self.trayCheckbox.setGeometry(QtCore.QRect(10, 50, 511, 21))
+        self.trayCheckbox.setObjectName("trayCheckbox")
+        self.autorunCheckbox = QtWidgets.QCheckBox(self.settingsWidget)
+        self.autorunCheckbox.setGeometry(QtCore.QRect(10, 70, 511, 21))
+        self.autorunCheckbox.setObjectName("autorunCheckbox")
         self.profilesWidget = QtWidgets.QWidget(self.mainWidget)
         self.profilesWidget.setEnabled(True)
         self.profilesWidget.setGeometry(QtCore.QRect(60, 0, 541, 431))
         self.profilesWidget.setStyleSheet("")
         self.profilesWidget.setObjectName("profilesWidget")
-        self.newProfileButton = QtWidgets.QPushButton(self.profilesWidget)
-        self.newProfileButton.setGeometry(QtCore.QRect(470, 80, 60, 60))
+        self.createProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.createProfileButton.setGeometry(QtCore.QRect(470, 80, 60, 60))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(14)
-        self.newProfileButton.setFont(font)
-        self.newProfileButton.setStyleSheet("")
-        self.newProfileButton.setObjectName("newProfileButton")
+        self.createProfileButton.setFont(font)
+        self.createProfileButton.setStyleSheet("")
+        self.createProfileButton.setObjectName("createProfileButton")
         self.editProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.editProfileButton.setEnabled(False)
         self.editProfileButton.setGeometry(QtCore.QRect(470, 150, 60, 60))
         font = QtGui.QFont()
         font.setFamily("Rubik")
@@ -132,6 +143,7 @@ class Ui_MainWindow(object):
         self.editProfileButton.setStyleSheet("")
         self.editProfileButton.setObjectName("editProfileButton")
         self.deleteProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.deleteProfileButton.setEnabled(False)
         self.deleteProfileButton.setGeometry(QtCore.QRect(470, 220, 60, 60))
         font = QtGui.QFont()
         font.setFamily("Rubik")
@@ -159,16 +171,16 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.listWidget.raise_()
-        self.newProfileButton.raise_()
+        self.createProfileButton.raise_()
         self.editProfileButton.raise_()
         self.deleteProfileButton.raise_()
         self.profilesTitle.raise_()
         self.label.raise_()
-        self.settingsWidget.raise_()
-        self.navigationWidget.raise_()
         self.profilesWidget.raise_()
+        self.settingsWidget.raise_()
         self.minimizeButton.raise_()
         self.closeButton.raise_()
+        self.navigationWidget.raise_()
         MainWindow.setCentralWidget(self.mainWidget)
 
         self.retranslateUi(MainWindow)
@@ -184,7 +196,9 @@ class Ui_MainWindow(object):
         self.title.setText(_translate("MainWindow", "AB"))
         self.adButton.setText(_translate("MainWindow", "GitHub"))
         self.settingsTitle.setText(_translate("MainWindow", "Настройки"))
-        self.newProfileButton.setText(_translate("MainWindow", "N"))
+        self.trayCheckbox.setText(_translate("MainWindow", "Прятать приложение в трей при нажатии кнопки \"Закрыть\""))
+        self.autorunCheckbox.setText(_translate("MainWindow", "Запускать приложение вместе с системой (автозапуск)"))
+        self.createProfileButton.setText(_translate("MainWindow", "N"))
         self.editProfileButton.setText(_translate("MainWindow", "E"))
         self.deleteProfileButton.setText(_translate("MainWindow", "D"))
         self.profilesTitle.setText(_translate("MainWindow", "Профили"))

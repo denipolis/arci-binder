@@ -723,7 +723,7 @@ QListWidget {
      </font>
     </property>
     <property name="text">
-     <string>Редактирование</string>
+     <string>Редактор</string>
     </property>
    </widget>
   </widget>
