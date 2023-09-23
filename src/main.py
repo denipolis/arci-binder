@@ -11,8 +11,6 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from mainWindow import Ui_MainWindow
 from profileEditWindow import Ui_ProfileEditWindow
-from profileDeleteWindow import Ui_ProfileDeleteWindow
-from profileListWindow import Ui_ProfileListWindow
 
 from tray import TrayIcon
 from database import Database
@@ -29,47 +27,6 @@ basedir = os.path.dirname(__file__)
 database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'))
 binder = Binder(database)
 app = QApplication(sys.argv)
-
-class ProfileListWindow(QMainWindow):
-    def rebuildUI(self):
-        self.ui.setupUi(self)
-        self.setFixedSize(self.width(), self.height())
-        self.ui.editProfileButton.clicked.connect(lambda: self.editProfileButtonCallback())
-        self.ui.closeButton.clicked.connect(lambda: self.hide())
-        self.ui.minimizeButton.clicked.connect(lambda: self.hide())
-        self.ui.listWidget.clear()
-
-        for profile in database.findAllProfiles():
-            self.ui.listWidget.addItem(profile[0])
-
-    def __init__(self):
-        super(ProfileListWindow, self).__init__()
-        self.ui = Ui_ProfileListWindow()
-        self.rebuildUI()
-
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.show = lambda: (self.rebuildUI(), self.showNormal())
-
-    def editProfileButtonCallback(self):
-
-        if not self.ui.listWidget.currentItem():
-            return
-
-        editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text()))
-    
-    def closeEvent(self, event) -> None:
-        event.ignore()
-        self.hide()
-
-    def mousePressEvent(self, event: QMouseEvent) -> None:
-        self.previousPosition = event.globalPosition()
-    
-    def mouseMoveEvent(self, event: QMouseEvent) -> None:
-        delta = QPointF(event.globalPosition() - self.previousPosition)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.previousPosition = event.globalPosition()
-
-listWindow = ProfileListWindow()
 
 class ProfileEditWindow(QMainWindow):
     def rebuildUI(self):
@@ -158,54 +115,6 @@ class ProfileEditWindow(QMainWindow):
         self.previousPosition = event.globalPosition()
 
 editWindow = ProfileEditWindow()
-
-class ProfileDeleteWindow(QMainWindow):
-    def rebuildUI(self):
-        self.ui.setupUi(self)
-        self.setFixedSize(self.width(), self.height())
-        self.ui.deleteProfileButton.clicked.connect(lambda:  self.deleteButtonCallback())
-        self.ui.closeButton.clicked.connect(lambda: self.hide())
-        self.ui.minimizeButton.clicked.connect(lambda: self.hide())
-        self.ui.listWidget.clear()
-
-        for profile in database.findAllProfiles():
-            self.ui.listWidget.addItem(profile[0])
-
-    def __init__(self):
-        super(ProfileDeleteWindow, self).__init__()
-        self.ui = Ui_ProfileDeleteWindow()
-        self.rebuildUI()
-        
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.show = lambda: ( self.rebuildUI(), self.showNormal() )
-
-    def deleteButtonCallback(self):
-        msgbox = QMessageBox()
-        msgbox.setText(f"Вы действительно хотите удалить профиль {self.ui.listWidget.currentItem().text()}?")
-        msgbox.setWindowTitle(f"ArciBinder")
-        msgbox.setIcon(QMessageBox.Icon.Question)
-        msgbox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-
-        answer = msgbox.exec()
-
-        if answer == QMessageBox.StandardButton.Yes:
-            try:
-                database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))
-            except:
-                pass
-
-            binder.updateProfiles()
-            self.ui.listWidget.takeItem(self.ui.listWidget.currentIndex().row())
-
-    def mousePressEvent(self, event: QMouseEvent) -> None:
-        self.previousPosition = event.globalPosition()
-    
-    def mouseMoveEvent(self, event: QMouseEvent) -> None:
-        delta = QPointF(event.globalPosition() - self.previousPosition)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self.previousPosition = event.globalPosition()
-
-deleteWindow = ProfileDeleteWindow()
 
 class MainMenuType(Enum):
     PROFILES = 1
