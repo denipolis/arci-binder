@@ -18,7 +18,7 @@ from tray import TrayIcon
 from database import Database
 from binder import Binder
 
-from typing import Callable
+from typing import Callable, Optional
 from enum import Enum
 
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
@@ -85,7 +85,7 @@ class ProfileEditWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.show: Callable[[str], None] = lambda uuid : (self.rebuildUI(), self.__showWithUuid(uuid))
+        self.show: Callable[[str], None] = lambda uuid=None : (self.rebuildUI(), self.__showWithUuid(uuid))
 
     def __showWithUuid(self, uuid: str) -> None:
         self.showNormal()
@@ -147,6 +147,7 @@ class ProfileEditWindow(QMainWindow):
 
         binder.updateProfiles()
         self.hide()
+        mainWindow.show()
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.previousPosition = event.globalPosition()
@@ -214,7 +215,7 @@ class MainWindow(QMainWindow):
     def rebuildUI(self):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        self.ui.newProfileButton.clicked.connect(lambda: editWindow.show())
+        self.ui.newProfileButton.clicked.connect(lambda: self.newButtonCallback())
         self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteProfileCallback())
         self.ui.editProfileButton.clicked.connect(lambda: editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text())))
 
@@ -233,8 +234,13 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.rebuildUI()
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint )
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.show = lambda: ( self.rebuildUI(), self.showNormal() )
     
+    def newButtonCallback(self):
+        self.hide()
+        editWindow.show()
+
     def closeButtonCallback(self):
         self.hide()
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
