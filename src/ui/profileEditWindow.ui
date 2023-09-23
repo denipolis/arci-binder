@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>946</width>
-    <height>417</height>
+    <width>967</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,9 +19,8 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
-	color: white;
-	font-family: Rubik;
-	background-color: #181818
+   background-color: #13171c;
+   color: #f5f5f5;
 }
 
 QLineEdit {
@@ -30,18 +29,18 @@ QLineEdit {
 }
 
 QPushButton {
-    background-color: transparent;
+    background-color: #1d2024;
 	border: none;
  	border-collapse: separate;
 	border-radius: 5px;
 }
 
-QPushButton:hover {
-    background-color: #999;
+QPushButton::hover {
+    background-color: #222a33;
 }
 
-QPushButton:pressed {
-    background-color: #666;
+QPushButton::pressed {
+    background-color: #1d2329;
 }
 
 QListWidget {
@@ -49,131 +48,13 @@ QListWidget {
 	border-radius: 7px;
 }</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>200</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>6.</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>60</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group1" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string1">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown1">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_6">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>210</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group6" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string6">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown6">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+  <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="createProfileButton">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>350</y>
-      <width>91</width>
+      <x>410</x>
+      <y>460</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -189,570 +70,15 @@ QListWidget {
      <string notr="true">border-radius: 6px;</string>
     </property>
     <property name="text">
-     <string>Создать</string>
+     <string>Действие</string>
     </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>150</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group4" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string4">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown4">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_8">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>270</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group8" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string8">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown8">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>140</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>4.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>40</y>
-      <width>171</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel {
-	color: rgb(220, 220, 220)
-}</string>
-    </property>
-    <property name="text">
-     <string>Задержка (ms)</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>2.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>1.</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_9">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>300</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group9" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string9">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown9">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_7">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>240</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group7" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string7">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown7">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>230</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>7.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>290</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>9.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>40</y>
-      <width>671</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>12</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel {
-	color: rgb(220, 220, 220)
-}</string>
-    </property>
-    <property name="text">
-     <string>Текст</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>260</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>8.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>110</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>3.</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>21</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>5.</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_5">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>180</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group5" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string5">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown5">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>90</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group2" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string2">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown2">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>120</y>
-      <width>851</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <layout class="QHBoxLayout" name="group3" stretch="4,1">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <item>
-      <widget class="QLineEdit" name="string3">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="cooldown3">
-       <property name="font">
-        <font>
-         <family>Rubik</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
    <widget class="QLabel" name="shortcutlabel">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>340</y>
-      <width>161</width>
+      <x>550</x>
+      <y>400</y>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -768,15 +94,15 @@ QListWidget {
 }</string>
     </property>
     <property name="text">
-     <string>Горячая клавиша</string>
+     <string>Клавиша</string>
     </property>
    </widget>
    <widget class="QKeySequenceEdit" name="shortcut">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>370</y>
-      <width>151</width>
+      <x>550</x>
+      <y>430</y>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -789,9 +115,6 @@ QListWidget {
     <property name="toolTip">
      <string/>
     </property>
-    <property name="locale">
-     <locale language="Russian" country="Russia"/>
-    </property>
     <property name="keySequence">
      <string/>
     </property>
@@ -799,9 +122,9 @@ QListWidget {
    <widget class="QLineEdit" name="profileName">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>370</y>
-      <width>161</width>
+      <x>340</x>
+      <y>430</y>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -812,8 +135,8 @@ QListWidget {
    <widget class="QLabel" name="profiileNameLabel">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>341</y>
+      <x>340</x>
+      <y>400</y>
       <width>191</width>
       <height>20</height>
      </rect>
@@ -833,35 +156,520 @@ QListWidget {
      <string> Название профиля</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="closeButton">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>10</y>
-      <width>31</width>
-      <height>21</height>
+      <x>20</x>
+      <y>50</y>
+      <width>921</width>
+      <height>341</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: #ffdbdc;</string>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="group1" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label1">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string1">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown1">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group2" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label2">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string2">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown2">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group3" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label3">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>3</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string3">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown3">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group4" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label4">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>4</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string4">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown4">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group5" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label5">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>5</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string5">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown5">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group6" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label6">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>6</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string6">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown6">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group7" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label7">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>7</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string7">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown7">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group8" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label8">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>8</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string8">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown8">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="group9" stretch="0,10,0">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label9">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>9</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="string9">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="cooldown9">
+         <property name="font">
+          <font>
+           <family>Rubik</family>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
    <widget class="QPushButton" name="minimizeButton">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>880</x>
       <y>10</y>
       <width>31</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -871,10 +679,32 @@ QListWidget {
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: #fffde0;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>_</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Rubik</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>X</string>
     </property>
    </widget>
    <widget class="QLabel" name="title">
@@ -882,35 +712,21 @@ QListWidget {
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>151</width>
-      <height>21</height>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Rubik</family>
       <pointsize>12</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
      </font>
     </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel {
-	color: rgb(220, 220, 220)
-}</string>
-    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Редактор профиля&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>Редактирование</string>
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

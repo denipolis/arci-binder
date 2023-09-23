@@ -12,14 +12,14 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_ProfileListWindow(object):
     def setupUi(self, ProfileListWindow):
         ProfileListWindow.setObjectName("ProfileListWindow")
-        ProfileListWindow.resize(378, 415)
+        ProfileListWindow.resize(378, 429)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/resources/logo.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         ProfileListWindow.setWindowIcon(icon)
         ProfileListWindow.setStyleSheet("QWidget {\n"
-"    color: white;\n"
-"    font-family: Rubik;\n"
-"    background-color: #181818\n"
+"   background-color: #13171c;\n"
+"   color: #f5f5f5;\n"
+"   font-family:  Rubik;\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
@@ -28,18 +28,18 @@ class Ui_ProfileListWindow(object):
 "}\n"
 "\n"
 "QPushButton {\n"
-"    background-color: transparent;\n"
+"    background-color: #1d2024;\n"
 "    border: none;\n"
 "     border-collapse: separate;\n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #999;\n"
+"QPushButton::hover {\n"
+"    background-color: #222a33;\n"
 "}\n"
 "\n"
-"QPushButton:pressed {\n"
-"    background-color: #666;\n"
+"QPushButton::pressed {\n"
+"    background-color: #1d2329;\n"
 "}\n"
 "\n"
 "QListWidget {\n"
@@ -49,34 +49,29 @@ class Ui_ProfileListWindow(object):
         self.centralwidget = QtWidgets.QWidget(ProfileListWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget.setGeometry(QtCore.QRect(10, 40, 361, 311))
+        self.listWidget.setGeometry(QtCore.QRect(10, 50, 361, 321))
+        self.listWidget.setStyleSheet("QWidget {\n"
+"   background-color: #586675;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"   background-color: #505d6b;\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"   background-color: #44515e;\n"
+"}")
         self.listWidget.setObjectName("listWidget")
         self.editProfileButton = QtWidgets.QPushButton(self.centralwidget)
-        self.editProfileButton.setGeometry(QtCore.QRect(120, 360, 161, 31))
+        self.editProfileButton.setGeometry(QtCore.QRect(110, 380, 161, 31))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(14)
         self.editProfileButton.setFont(font)
-        self.editProfileButton.setStyleSheet("border-radius: 7px;")
+        self.editProfileButton.setStyleSheet("")
         self.editProfileButton.setObjectName("editProfileButton")
-        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.closeButton.setGeometry(QtCore.QRect(340, 10, 31, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(11)
-        self.closeButton.setFont(font)
-        self.closeButton.setStyleSheet("color: #ffdbdc;")
-        self.closeButton.setObjectName("closeButton")
-        self.minimizeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.minimizeButton.setGeometry(QtCore.QRect(310, 10, 31, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(11)
-        self.minimizeButton.setFont(font)
-        self.minimizeButton.setStyleSheet("color: #fffde0;")
-        self.minimizeButton.setObjectName("minimizeButton")
         self.title = QtWidgets.QLabel(self.centralwidget)
-        self.title.setGeometry(QtCore.QRect(10, 10, 211, 21))
+        self.title.setGeometry(QtCore.QRect(10, 10, 231, 31))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(12)
@@ -88,10 +83,23 @@ class Ui_ProfileListWindow(object):
 "    color: rgb(220, 220, 220)\n"
 "}")
         self.title.setObjectName("title")
+        self.minimizeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.minimizeButton.setGeometry(QtCore.QRect(300, 10, 31, 31))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(11)
+        self.minimizeButton.setFont(font)
+        self.minimizeButton.setStyleSheet("")
+        self.minimizeButton.setObjectName("minimizeButton")
+        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.closeButton.setGeometry(QtCore.QRect(340, 10, 31, 31))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(11)
+        self.closeButton.setFont(font)
+        self.closeButton.setStyleSheet("")
+        self.closeButton.setObjectName("closeButton")
         ProfileListWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(ProfileListWindow)
-        self.statusbar.setObjectName("statusbar")
-        ProfileListWindow.setStatusBar(self.statusbar)
         self.action = QtGui.QAction(ProfileListWindow)
         self.action.setObjectName("action")
         self.action_2 = QtGui.QAction(ProfileListWindow)
@@ -104,9 +112,9 @@ class Ui_ProfileListWindow(object):
         _translate = QtCore.QCoreApplication.translate
         ProfileListWindow.setWindowTitle(_translate("ProfileListWindow", "Список профилей"))
         self.editProfileButton.setText(_translate("ProfileListWindow", "Редактировать"))
-        self.closeButton.setText(_translate("ProfileListWindow", "X"))
-        self.minimizeButton.setText(_translate("ProfileListWindow", "_"))
         self.title.setText(_translate("ProfileListWindow", "<html><head/><body><p>Редактирование профилей</p></body></html>"))
+        self.minimizeButton.setText(_translate("ProfileListWindow", "_"))
+        self.closeButton.setText(_translate("ProfileListWindow", "X"))
         self.action.setText(_translate("ProfileListWindow", "Сбросить базу данных"))
         self.action_2.setText(_translate("ProfileListWindow", "Выйти"))
 

@@ -18,6 +18,9 @@ from tray import TrayIcon
 from database import Database
 from binder import Binder
 
+from typing import Callable
+from enum import Enum
+
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
     os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
 
@@ -82,7 +85,7 @@ class ProfileEditWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.show = lambda uuid=None: (self.rebuildUI(), self.__showWithUuid(uuid))
+        self.show: Callable[[str], None] = lambda uuid : (self.rebuildUI(), self.__showWithUuid(uuid))
 
     def __showWithUuid(self, uuid: str) -> None:
         self.showNormal()
@@ -203,30 +206,65 @@ class ProfileDeleteWindow(QMainWindow):
 
 deleteWindow = ProfileDeleteWindow()
 
+class MainMenuType(Enum):
+    PROFILES = 1
+    SETTINGS = 2
+
 class MainWindow(QMainWindow):
     def rebuildUI(self):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        self.ui.createProfileButton.clicked.connect(lambda: editWindow.show())
-        self.ui.deleteProfileButton.clicked.connect(lambda: deleteWindow.show())
-        self.ui.editProfileButton.clicked.connect(lambda: listWindow.show())
+        self.ui.newProfileButton.clicked.connect(lambda: editWindow.show())
+        self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteProfileCallback())
+        self.ui.editProfileButton.clicked.connect(lambda: editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text())))
 
-        self.ui.adButton.clicked.connect(lambda: utils.openLink("https://github.com/denipolis"))
+        self.ui.adButton.clicked.connect(lambda: utils.openURL("https://github.com/denipolis"))
 
         self.ui.closeButton.clicked.connect(lambda: self.closeButtonCallback())
         self.ui.minimizeButton.clicked.connect(lambda: self.closeButtonCallback())
+        self.ui.profilesButton.clicked.connect(lambda: self.changeWidget(MainMenuType.PROFILES))
+        self.ui.settingsButton.clicked.connect(lambda: self.changeWidget(MainMenuType.SETTINGS))
+        self.ui.listWidget.clear()
+
+        for profile in database.findAllProfiles():
+            self.ui.listWidget.addItem(profile[0])
 
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.rebuildUI()
-
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint )
     
     def closeButtonCallback(self):
         self.hide()
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
+    def deleteProfileCallback(self):
+        msgbox = QMessageBox()
+        msgbox.setText(f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?")
+        msgbox.setWindowTitle(f"ArciBinder")
+        msgbox.setIcon(QMessageBox.Icon.Question)
+        msgbox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+
+        answer = msgbox.exec()
+
+        if answer == QMessageBox.StandardButton.Yes:
+            try:
+                database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))
+            except:
+                pass
+
+            binder.updateProfiles()
+            self.ui.listWidget.takeItem(self.ui.listWidget.currentIndex().row())
+    
+    def changeWidget(self, type: MainMenuType):
+        if type == MainMenuType.PROFILES:
+            self.ui.settingsWidget.hide()
+            self.ui.profilesWidget.show()
+        if type == MainMenuType.SETTINGS:
+            self.ui.settingsWidget.show()
+            self.ui.profilesWidget.hide()
+
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.previousPosition = event.globalPosition()
     

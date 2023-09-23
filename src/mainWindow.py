@@ -13,11 +13,11 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(352, 140)
+        MainWindow.resize(605, 427)
         MainWindow.setStyleSheet("QWidget {\n"
-"    color: white;\n"
-"    font-family: Rubik;\n"
-"    background-color: #181818\n"
+"   background-color: #13171c;\n"
+"   color: #f5f5f5;\n"
+"   font-family:  Rubik;\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
@@ -26,18 +26,18 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QPushButton {\n"
-"    background-color: transparent;\n"
+"    background-color: #1d2024;\n"
 "    border: none;\n"
 "     border-collapse: separate;\n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #999;\n"
+"QPushButton::hover {\n"
+"    background-color: #222a33;\n"
 "}\n"
 "\n"
-"QPushButton:pressed {\n"
-"    background-color: #666;\n"
+"QPushButton::pressed {\n"
+"    background-color: #1d2329;\n"
 "}\n"
 "\n"
 "QListWidget {\n"
@@ -45,81 +45,131 @@ class Ui_MainWindow(object):
 "    border-radius: 7px;\n"
 "}")
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.createProfileButton = QtWidgets.QPushButton(self.centralwidget)
-        self.createProfileButton.setGeometry(QtCore.QRect(50, 40, 121, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(10)
-        self.createProfileButton.setFont(font)
-        self.createProfileButton.setStyleSheet("")
-        self.createProfileButton.setObjectName("createProfileButton")
-        self.deleteProfileButton = QtWidgets.QPushButton(self.centralwidget)
-        self.deleteProfileButton.setGeometry(QtCore.QRect(180, 40, 121, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setWeight(50)
-        self.deleteProfileButton.setFont(font)
-        self.deleteProfileButton.setStyleSheet("")
-        self.deleteProfileButton.setObjectName("deleteProfileButton")
-        self.title = QtWidgets.QLabel(self.centralwidget)
-        self.title.setGeometry(QtCore.QRect(10, 10, 81, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setWeight(50)
-        self.title.setFont(font)
-        self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.title.setStyleSheet("QLabel {\n"
-"    color: rgb(220, 220, 220)\n"
-"}")
-        self.title.setObjectName("title")
-        self.editProfileButton = QtWidgets.QPushButton(self.centralwidget)
-        self.editProfileButton.setGeometry(QtCore.QRect(80, 70, 201, 21))
-        font = QtGui.QFont()
-        font.setFamily("Rubik")
-        font.setPointSize(11)
-        self.editProfileButton.setFont(font)
-        self.editProfileButton.setStyleSheet("")
-        self.editProfileButton.setObjectName("editProfileButton")
-        self.adButton = QtWidgets.QPushButton(self.centralwidget)
-        self.adButton.setGeometry(QtCore.QRect(100, 100, 161, 20))
-        self.adButton.setStyleSheet("QPushButton:pressed {\n"
-"    background-color: transparent;\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"    color: #c9c9c9;\n"
-"}")
-        self.adButton.setObjectName("adButton")
-        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.closeButton.setGeometry(QtCore.QRect(320, 10, 31, 21))
+        self.mainWidget = QtWidgets.QWidget(MainWindow)
+        self.mainWidget.setStyleSheet("")
+        self.mainWidget.setObjectName("mainWidget")
+        self.closeButton = QtWidgets.QPushButton(self.mainWidget)
+        self.closeButton.setGeometry(QtCore.QRect(560, 10, 31, 31))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(11)
         self.closeButton.setFont(font)
-        self.closeButton.setStyleSheet("color: #fffde0;")
+        self.closeButton.setStyleSheet("")
         self.closeButton.setObjectName("closeButton")
-        self.minimizeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.minimizeButton.setGeometry(QtCore.QRect(290, 10, 31, 21))
+        self.minimizeButton = QtWidgets.QPushButton(self.mainWidget)
+        self.minimizeButton.setGeometry(QtCore.QRect(520, 10, 31, 31))
         font = QtGui.QFont()
         font.setFamily("Rubik")
         font.setPointSize(11)
         self.minimizeButton.setFont(font)
-        self.minimizeButton.setStyleSheet("color: #fffde0;\n"
+        self.minimizeButton.setStyleSheet("")
+        self.minimizeButton.setObjectName("minimizeButton")
+        self.navigationWidget = QtWidgets.QWidget(self.mainWidget)
+        self.navigationWidget.setGeometry(QtCore.QRect(0, 0, 61, 431))
+        self.navigationWidget.setStyleSheet("QWidget {\n"
+"   background-color: #586675;\n"
+"}\n"
 "\n"
 "QPushButton::hover {\n"
-"    background-color: #ff0000;\n"
+"   background-color: #505d6b;\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"   background-color: #44515e;\n"
 "}")
-        self.minimizeButton.setObjectName("minimizeButton")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.navigationWidget.setObjectName("navigationWidget")
+        self.profilesButton = QtWidgets.QPushButton(self.navigationWidget)
+        self.profilesButton.setGeometry(QtCore.QRect(10, 50, 41, 41))
+        self.profilesButton.setObjectName("profilesButton")
+        self.settingsButton = QtWidgets.QPushButton(self.navigationWidget)
+        self.settingsButton.setGeometry(QtCore.QRect(10, 100, 41, 41))
+        self.settingsButton.setObjectName("settingsButton")
+        self.title = QtWidgets.QLabel(self.navigationWidget)
+        self.title.setGeometry(QtCore.QRect(0, 0, 61, 51))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(14)
+        self.title.setFont(font)
+        self.title.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.title.setStyleSheet("color: #ffffff;")
+        self.title.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.title.setObjectName("title")
+        self.adButton = QtWidgets.QPushButton(self.navigationWidget)
+        self.adButton.setGeometry(QtCore.QRect(0, 400, 61, 21))
+        self.adButton.setStyleSheet("")
+        self.adButton.setObjectName("adButton")
+        self.settingsWidget = QtWidgets.QWidget(self.mainWidget)
+        self.settingsWidget.setEnabled(True)
+        self.settingsWidget.setGeometry(QtCore.QRect(60, 0, 541, 431))
+        self.settingsWidget.setStyleSheet("")
+        self.settingsWidget.setObjectName("settingsWidget")
+        self.settingsTitle = QtWidgets.QLabel(self.settingsWidget)
+        self.settingsTitle.setGeometry(QtCore.QRect(10, 10, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(12)
+        self.settingsTitle.setFont(font)
+        self.settingsTitle.setObjectName("settingsTitle")
+        self.profilesWidget = QtWidgets.QWidget(self.mainWidget)
+        self.profilesWidget.setEnabled(True)
+        self.profilesWidget.setGeometry(QtCore.QRect(60, 0, 541, 431))
+        self.profilesWidget.setStyleSheet("")
+        self.profilesWidget.setObjectName("profilesWidget")
+        self.newProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.newProfileButton.setGeometry(QtCore.QRect(470, 80, 60, 60))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(14)
+        self.newProfileButton.setFont(font)
+        self.newProfileButton.setStyleSheet("")
+        self.newProfileButton.setObjectName("newProfileButton")
+        self.editProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.editProfileButton.setGeometry(QtCore.QRect(470, 150, 60, 60))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(14)
+        self.editProfileButton.setFont(font)
+        self.editProfileButton.setStyleSheet("")
+        self.editProfileButton.setObjectName("editProfileButton")
+        self.deleteProfileButton = QtWidgets.QPushButton(self.profilesWidget)
+        self.deleteProfileButton.setGeometry(QtCore.QRect(470, 220, 60, 60))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(14)
+        self.deleteProfileButton.setFont(font)
+        self.deleteProfileButton.setStyleSheet("")
+        self.deleteProfileButton.setObjectName("deleteProfileButton")
+        self.profilesTitle = QtWidgets.QLabel(self.profilesWidget)
+        self.profilesTitle.setGeometry(QtCore.QRect(10, 10, 101, 31))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(12)
+        self.profilesTitle.setFont(font)
+        self.profilesTitle.setObjectName("profilesTitle")
+        self.listWidget = QtWidgets.QListWidget(self.profilesWidget)
+        self.listWidget.setEnabled(True)
+        self.listWidget.setGeometry(QtCore.QRect(20, 80, 431, 321))
+        self.listWidget.setStyleSheet("")
+        self.listWidget.setObjectName("listWidget")
+        self.label = QtWidgets.QLabel(self.profilesWidget)
+        self.label.setGeometry(QtCore.QRect(20, 60, 111, 16))
+        font = QtGui.QFont()
+        font.setFamily("Rubik")
+        font.setPointSize(10)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.listWidget.raise_()
+        self.newProfileButton.raise_()
+        self.editProfileButton.raise_()
+        self.deleteProfileButton.raise_()
+        self.profilesTitle.raise_()
+        self.label.raise_()
+        self.settingsWidget.raise_()
+        self.navigationWidget.raise_()
+        self.profilesWidget.raise_()
+        self.minimizeButton.raise_()
+        self.closeButton.raise_()
+        MainWindow.setCentralWidget(self.mainWidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -127,13 +177,18 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Главное меню"))
-        self.createProfileButton.setText(_translate("MainWindow", "Создать профиль"))
-        self.deleteProfileButton.setText(_translate("MainWindow", "Удалить профиль"))
-        self.title.setText(_translate("MainWindow", "ArciBinder"))
-        self.editProfileButton.setText(_translate("MainWindow", "Редактировать профили"))
-        self.adButton.setText(_translate("MainWindow", "GitHub разработчика"))
         self.closeButton.setText(_translate("MainWindow", "X"))
         self.minimizeButton.setText(_translate("MainWindow", "_"))
+        self.profilesButton.setText(_translate("MainWindow", "P"))
+        self.settingsButton.setText(_translate("MainWindow", "S"))
+        self.title.setText(_translate("MainWindow", "AB"))
+        self.adButton.setText(_translate("MainWindow", "GitHub"))
+        self.settingsTitle.setText(_translate("MainWindow", "Настройки"))
+        self.newProfileButton.setText(_translate("MainWindow", "N"))
+        self.editProfileButton.setText(_translate("MainWindow", "E"))
+        self.deleteProfileButton.setText(_translate("MainWindow", "D"))
+        self.profilesTitle.setText(_translate("MainWindow", "Профили"))
+        self.label.setText(_translate("MainWindow", "Ваши профили:"))
 
 
 if __name__ == "__main__":

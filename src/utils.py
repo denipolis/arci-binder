@@ -23,5 +23,5 @@ def getActiveWindowTitle() -> str:
     else:
         return "NOTHING"
 
-def openLink(link: str):
+def openURL(link: str):
     os.system(f"start \"\" {link}")
