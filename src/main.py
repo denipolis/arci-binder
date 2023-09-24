@@ -198,7 +198,7 @@ def main():
 
     app.setApplicationName('ArciBinder')
     app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion('1.2')
+    app.setApplicationVersion('1.2.1')
     app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
     if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
     
