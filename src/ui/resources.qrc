@@ -1,7 +1,13 @@
 <RCC>
   <qresource prefix="icons">
-    <file>images/edit.png</file>
-    <file>images/plus.png</file>
-    <file>images/trash.png</file>
+    <file>images/github.svg</file>
+    <file>images/edit.svg</file>
+    <file>images/plus-square.svg</file>
+    <file>images/trash.svg</file>
+    <file>images/command.svg</file>
+    <file>images/settings.svg</file>
+    <file>images/eye.svg</file>
+    <file>images/log-out.svg</file>
+    <file>images/logo32x32.png</file>
   </qresource>
 </RCC>

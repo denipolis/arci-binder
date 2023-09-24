@@ -13,6 +13,12 @@
     <height>427</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Rubik SemiBold</family>
+    <pointsize>-1</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Главное меню</string>
   </property>
@@ -20,7 +26,8 @@
    <string notr="true">QWidget {
    background-color: #13171c;
    color: #f5f5f5;
-   font-family:  Rubik;
+   font-family:  Rubik SemiBold;
+   font-size: 13px;
 }
 
 QLineEdit {
@@ -35,16 +42,15 @@ QPushButton {
 	border-radius: 5px;
 }
 
-QPushButton::disabled {
-    background-color: #202024;
-}
-
 QPushButton::hover {
     background-color: #222a33;
 }
 
 QPushButton::pressed {
     background-color: #1d2329;
+}
+QPushButton::pressed {
+    background-color: #343940;
 }
 
 QListWidget {
@@ -70,8 +76,8 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -92,8 +98,8 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -129,70 +135,100 @@ QPushButton::pressed {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>70</y>
        <width>41</width>
        <height>41</height>
       </rect>
      </property>
      <property name="text">
-      <string>P</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/command.svg</normaloff>:/icons/images/command.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="settingsButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>120</y>
        <width>41</width>
        <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>S</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="title">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>61</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Rubik</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #ffffff;</string>
-     </property>
-     <property name="text">
-      <string>AB</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="adButton">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>400</y>
-       <width>61</width>
-       <height>21</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>GitHub</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/settings.svg</normaloff>:/icons/images/settings.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="adButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>390</y>
+       <width>41</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/github.svg</normaloff>:/icons/images/github.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="title">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources.qrc">:/icons/images/logo32x32.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
@@ -222,8 +258,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>12</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
@@ -241,8 +277,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>10</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
@@ -260,8 +296,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>10</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
@@ -279,8 +315,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>10</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
@@ -300,6 +336,12 @@ QPushButton::pressed {
       <height>431</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -314,8 +356,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>14</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -326,12 +368,12 @@ QPushButton::pressed {
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/images/plus.png</normaloff>:/icons/images/plus.png</iconset>
+       <normaloff>:/icons/images/plus-square.svg</normaloff>:/icons/images/plus-square.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>48</width>
-       <height>48</height>
+       <width>32</width>
+       <height>32</height>
       </size>
      </property>
     </widget>
@@ -349,8 +391,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>14</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -361,12 +403,12 @@ QPushButton::pressed {
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/images/edit.png</normaloff>:/icons/images/edit.png</iconset>
+       <normaloff>:/icons/images/edit.svg</normaloff>:/icons/images/edit.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>48</width>
-       <height>48</height>
+       <width>32</width>
+       <height>32</height>
       </size>
      </property>
     </widget>
@@ -384,8 +426,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>14</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -396,12 +438,12 @@ QPushButton::pressed {
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/icons/images/trash.png</normaloff>:/icons/images/trash.png</iconset>
+       <normaloff>:/icons/images/trash.svg</normaloff>:/icons/images/trash.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
-       <width>48</width>
-       <height>48</height>
+       <width>32</width>
+       <height>32</height>
       </size>
      </property>
     </widget>
@@ -416,8 +458,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>12</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
@@ -451,8 +493,8 @@ QPushButton::pressed {
      </property>
      <property name="font">
       <font>
-       <family>Rubik</family>
-       <pointsize>10</pointsize>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="text">
