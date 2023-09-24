@@ -239,6 +239,12 @@ QPushButton::pressed {
        <height>21</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Rubik</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Прятать приложение в трей при нажатии кнопки &quot;Закрыть&quot;</string>
      </property>
@@ -252,6 +258,12 @@ QPushButton::pressed {
        <height>21</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Rubik</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Запускать приложение вместе с системой (автозапуск)</string>
      </property>
@@ -264,6 +276,12 @@ QPushButton::pressed {
        <width>511</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Rubik</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Использовать бинды не только в RAGE Multiplayer</string>
@@ -418,8 +436,8 @@ QPushButton::pressed {
     <zorder>profilesTitle</zorder>
     <zorder>label</zorder>
    </widget>
-   <zorder>profilesWidget</zorder>
    <zorder>settingsWidget</zorder>
+   <zorder>profilesWidget</zorder>
    <zorder>minimizeButton</zorder>
    <zorder>closeButton</zorder>
    <zorder>navigationWidget</zorder>
