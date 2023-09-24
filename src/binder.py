@@ -25,13 +25,11 @@ class Binder:
 
   def playProfile(self, profileName: str):
     print(utils.getActiveWindowTitle().find("RAGE Multiplayer"))
-    if not self.database.isSettingEnabled('dontCheckForName') and not "RAGE Multiplayer" in utils.getActiveWindowTitle():
-        return
+    if self.database.isSettingEnabled('dontCheckForName') or "RAGE Multiplayer" in utils.getActiveWindowTitle():
+      profileStrings = self.database.findStringsInProfile(profileName)
 
-    profileStrings = self.database.findStringsInProfile(profileName)
-
-    for profileString in profileStrings:
-        time.sleep(float(profileString[1])/1000)
-        utils.singleKeyPress("T")
-        keyboard.write(str(profileString[0]))
-        utils.singleKeyPress("ENTER")
+      for profileString in profileStrings:
+          time.sleep(float(profileString[1])/1000)
+          utils.singleKeyPress("T")
+          keyboard.write(str(profileString[0]))
+          utils.singleKeyPress("ENTER")
