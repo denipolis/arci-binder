@@ -31,17 +31,17 @@ def openURL(link: str) -> None:
 def enableAutoRun() -> None:
     currentAppPath = sys.argv[0]
 
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_ALL_ACCESS)
+    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_SET_VALUE)
     reg.SetValueEx(key, "ArciBinder", 0, reg.REG_SZ, currentAppPath)
     key.Close()
 
 def disableAutoRun() -> None:
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_ALL_ACCESS)
+    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_WRITE)
     reg.DeleteValue(key, "ArciBinder")
     key.Close()
 
 def isAutoRun() -> bool:
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_ALL_ACCESS)
+    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_QUERY_VALUE)
     
     try:
         reg.QueryValueEx(key, "ArciBinder")
