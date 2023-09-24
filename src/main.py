@@ -7,7 +7,7 @@ import utils
 
 from PyQt6.QtCore import Qt, QPointF
 from PyQt6.QtGui import QIcon, QMouseEvent
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QCheckBox
 
 from windows.mainWindow import Ui_MainWindow
 from windows.profileEditWindow import Ui_ProfileEditWindow
@@ -128,7 +128,11 @@ class MainWindow(QMainWindow):
 
         self.ui.listWidget.clicked.connect(lambda: self.handleListWidgetClick())
 
-        self.ui.autorunCheckbox.stateChanged.connect(lambda state: utils.addToAutoRun())
+        self.ui.trayCheckbox.setChecked(database.findSettingValue('hideInTray') == 2)
+        self.ui.trayCheckbox.stateChanged.connect(lambda state: database.setSettingValue('hideInTray', state))
+
+        self.ui.autorunCheckbox.setChecked(utils.isAutoRun())
+        self.ui.autorunCheckbox.stateChanged.connect(lambda state: utils.enableAutoRun() if state == 2 else utils.disableAutoRun())
 
         for profile in database.findAllProfiles():
             self.ui.listWidget.addItem(profile[0])
@@ -149,7 +153,11 @@ class MainWindow(QMainWindow):
         editWindow.show()
 
     def closeButtonCallback(self):
+        if database.findSettingValue('hideInTray') == 0:
+            utils.quit()
+
         self.hide()
+        
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
     def deleteProfileCallback(self):
@@ -182,7 +190,6 @@ mainWindow = MainWindow()
 trayIcon = TrayIcon(mainWindow)
 
 def main():
-    database.initializeProfiles()
     binder.updateProfiles()
 
     app.setApplicationName('ArciBinder')
