@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>images/minimize-2.svg</file>
+    <file>images/x.svg</file>
     <file>images/github.svg</file>
     <file>images/edit.svg</file>
     <file>images/plus-square.svg</file>
@@ -9,5 +11,8 @@
     <file>images/eye.svg</file>
     <file>images/log-out.svg</file>
     <file>images/logo32x32.png</file>
+  </qresource>
+  <qresource prefix="fonts">
+    <file>fonts/Rubik-SemiBold.ttf</file>
   </qresource>
 </RCC>

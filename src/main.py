@@ -6,7 +6,7 @@ import os
 import utils
 
 from PySide6.QtCore import Qt, QPointF
-from PySide6.QtGui import QIcon, QMouseEvent
+from PySide6.QtGui import QIcon, QMouseEvent, QFontDatabase, QFont
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QCheckBox
 
 from windows.mainWindow import Ui_MainWindow
@@ -18,6 +18,7 @@ from binder import Binder
 
 from typing import Callable
 from enum import Enum
+import windows.resources_rc
 
 if not os.path.exists(os.path.join(os.getenv('APPDATA'), 'arcibinder')):
     os.makedirs(os.path.join(os.getenv('APPDATA'), 'arcibinder'))
@@ -199,7 +200,8 @@ def main():
     app.setApplicationDisplayName('ArciBinder')
     app.setApplicationVersion('1.2')
     app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
-
+    if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
+    
     mainWindow.show()
 
     sys.exit(app.exec())

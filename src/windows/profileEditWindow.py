@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QKeySequenceEdit, QLabel,
     QLayout, QLineEdit, QMainWindow, QPushButton,
     QSizePolicy, QVBoxLayout, QWidget)
+from . import resources_rc
 
 class Ui_ProfileEditWindow(object):
     def setupUi(self, ProfileEditWindow):
@@ -67,6 +68,10 @@ class Ui_ProfileEditWindow(object):
         font.setBold(False)
         self.createProfileButton.setFont(font)
         self.createProfileButton.setStyleSheet(u"border-radius: 6px;")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.createProfileButton.setIcon(icon1)
+        self.createProfileButton.setIconSize(QSize(18, 18))
         self.shortcutlabel = QLabel(self.centralWidget)
         self.shortcutlabel.setObjectName(u"shortcutlabel")
         self.shortcutlabel.setGeometry(QRect(550, 400, 91, 21))
@@ -361,11 +366,17 @@ class Ui_ProfileEditWindow(object):
         self.minimizeButton.setGeometry(QRect(880, 10, 31, 31))
         self.minimizeButton.setFont(font4)
         self.minimizeButton.setStyleSheet(u"")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/minimize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.minimizeButton.setIcon(icon2)
         self.closeButton = QPushButton(self.centralWidget)
         self.closeButton.setObjectName(u"closeButton")
         self.closeButton.setGeometry(QRect(920, 10, 31, 31))
         self.closeButton.setFont(font4)
         self.closeButton.setStyleSheet(u"")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/x.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.closeButton.setIcon(icon3)
         self.title = QLabel(self.centralWidget)
         self.title.setObjectName(u"title")
         self.title.setGeometry(QRect(10, 10, 181, 31))
@@ -382,7 +393,7 @@ class Ui_ProfileEditWindow(object):
 
     def retranslateUi(self, ProfileEditWindow):
         ProfileEditWindow.setWindowTitle(QCoreApplication.translate("ProfileEditWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0444\u0438\u043b\u044f", None))
-        self.createProfileButton.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
+        self.createProfileButton.setText(QCoreApplication.translate("ProfileEditWindow", u" \u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.shortcutlabel.setText(QCoreApplication.translate("ProfileEditWindow", u"\u041a\u043b\u0430\u0432\u0438\u0448\u0430", None))
 #if QT_CONFIG(tooltip)
         self.shortcut.setToolTip("")
@@ -409,8 +420,8 @@ class Ui_ProfileEditWindow(object):
         self.cooldown8.setText(QCoreApplication.translate("ProfileEditWindow", u"0", None))
         self.label9.setText(QCoreApplication.translate("ProfileEditWindow", u"9", None))
         self.cooldown9.setText(QCoreApplication.translate("ProfileEditWindow", u"0", None))
-        self.minimizeButton.setText(QCoreApplication.translate("ProfileEditWindow", u"_", None))
-        self.closeButton.setText(QCoreApplication.translate("ProfileEditWindow", u"X", None))
+        self.minimizeButton.setText("")
+        self.closeButton.setText("")
         self.title.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440", None))
     # retranslateUi
 

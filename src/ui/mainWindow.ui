@@ -84,7 +84,11 @@ QListWidget {
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>X</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/icons/images/x.svg</normaloff>:/icons/images/x.svg</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="minimizeButton">
@@ -106,7 +110,11 @@ QListWidget {
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>_</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/icons/images/minimize-2.svg</normaloff>:/icons/images/minimize-2.svg</iconset>
     </property>
    </widget>
    <widget class="QWidget" name="navigationWidget" native="true">
@@ -269,8 +277,8 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="trayCheckbox">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>50</y>
+       <x>20</x>
+       <y>60</y>
        <width>511</width>
        <height>21</height>
       </rect>
@@ -288,8 +296,8 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="autorunCheckbox">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>70</y>
+       <x>20</x>
+       <y>80</y>
        <width>511</width>
        <height>21</height>
       </rect>
@@ -307,8 +315,8 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="nameCheckbox">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>90</y>
+       <x>20</x>
+       <y>100</y>
        <width>511</width>
        <height>21</height>
       </rect>
