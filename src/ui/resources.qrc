@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>images/edit.png</file>
+    <file>images/plus.png</file>
+    <file>images/trash.png</file>
+  </qresource>
+</RCC>

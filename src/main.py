@@ -5,9 +5,9 @@ import os
 
 import utils
 
-from PyQt6.QtCore import Qt, QPointF
-from PyQt6.QtGui import QIcon, QMouseEvent
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QCheckBox
+from PySide6.QtCore import Qt, QPointF
+from PySide6.QtGui import QIcon, QMouseEvent
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QCheckBox
 
 from windows.mainWindow import Ui_MainWindow
 from windows.profileEditWindow import Ui_ProfileEditWindow
@@ -164,7 +164,7 @@ class MainWindow(QMainWindow):
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
         
     def deleteProfileCallback(self):
-        answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().txt()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
+        answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
 
         if answer == QMessageBox.StandardButton.Yes:
             database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))

@@ -322,7 +322,17 @@ QPushButton::pressed {
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>N</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/plus.png</normaloff>:/icons/images/plus.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="editProfileButton">
@@ -347,7 +357,17 @@ QPushButton::pressed {
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>E</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/edit.png</normaloff>:/icons/images/edit.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="deleteProfileButton">
@@ -372,7 +392,17 @@ QPushButton::pressed {
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>D</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/trash.png</normaloff>:/icons/images/trash.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
      </property>
     </widget>
     <widget class="QLabel" name="profilesTitle">
@@ -443,6 +473,8 @@ QPushButton::pressed {
    <zorder>navigationWidget</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
