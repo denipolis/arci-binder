@@ -2,6 +2,8 @@
 Simple and nice keyboard to chat message bindings maker.
 Made especially for RAGE:MP.
 
+(для тех у кого не работает - выключите проверку на RAGE MP в настройках)
+
 ![image](https://github.com/denipolis/arci-binder/assets/52839937/e09b6b9e-f7d9-4554-b910-ddfdcf23f75e)
 
 ## How to use source code:
