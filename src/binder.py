@@ -3,6 +3,8 @@ import utils
 import keyboard
 from database import Database
 
+rageMpTitle = "RАGЕ Multiplауer"
+
 class Binder:
   def __init__(self, database: Database) -> None:
     self.database = database
@@ -24,8 +26,7 @@ class Binder:
         keyboard.add_hotkey(profile[2], self.playProfile, args=(str(profile[1]),))
 
   def playProfile(self, profileName: str):
-    print(utils.getActiveWindowTitle().find("RAGE Multiplayer"))
-    if self.database.isSettingEnabled('dontCheckForName') or "RAGE Multiplayer" in utils.getActiveWindowTitle():
+    if self.database.isSettingEnabled('dontCheckForName') or (rageMpTitle in utils.getActiveWindowTitle()):
       profileStrings = self.database.findStringsInProfile(profileName)
 
       for profileString in profileStrings:
