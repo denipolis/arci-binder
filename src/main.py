@@ -124,15 +124,18 @@ class MainWindow(QMainWindow):
         self.ui.minimizeButton.clicked.connect(lambda: self.closeButtonCallback())
         self.ui.profilesButton.clicked.connect(lambda: self.changeWidget(MainMenuType.PROFILES))
         self.ui.settingsButton.clicked.connect(lambda: self.changeWidget(MainMenuType.SETTINGS))
-        self.ui.listWidget.clear()
 
+        self.ui.listWidget.clear()
         self.ui.listWidget.clicked.connect(lambda: self.handleListWidgetClick())
 
-        self.ui.trayCheckbox.setChecked(database.findSettingValue('hideInTray') == 2)
+        self.ui.trayCheckbox.setChecked(database.isSettingEnabled('hideInTray'))
         self.ui.trayCheckbox.stateChanged.connect(lambda state: database.setSettingValue('hideInTray', state))
 
         self.ui.autorunCheckbox.setChecked(utils.isAutoRun())
         self.ui.autorunCheckbox.stateChanged.connect(lambda state: utils.enableAutoRun() if state == 2 else utils.disableAutoRun())
+
+        self.ui.nameCheckbox.setChecked(database.isSettingEnabled('dontCheckForName'))
+        self.ui.nameCheckbox.stateChanged.connect(lambda state: database.setSettingValue('dontCheckForName', state))
 
         for profile in database.findAllProfiles():
             self.ui.listWidget.addItem(profile[0])
@@ -153,7 +156,7 @@ class MainWindow(QMainWindow):
         editWindow.show()
 
     def closeButtonCallback(self):
-        if database.findSettingValue('hideInTray') == 0:
+        if not database.isSettingEnabled('hideInTray'):
             utils.quit()
 
         self.hide()

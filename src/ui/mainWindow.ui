@@ -256,6 +256,19 @@ QPushButton::pressed {
       <string>Запускать приложение вместе с системой (автозапуск)</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="nameCheckbox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Использовать бинды не только в RAGE Multiplayer</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="profilesWidget" native="true">
     <property name="enabled">

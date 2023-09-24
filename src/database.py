@@ -18,20 +18,22 @@ class Database:
     except:
         pass
   
-
-  def findSettingValue(self, key: str) -> int:
-    if not self.isSettingExists(key):
-        return 0
-
-    self.cursor.execute(f"SELECT * FROM settings WHERE key='{key}'")
-    return int(self.cursor.fetchone()[1])
   
   def isSettingExists(self, key: str) -> bool:
     self.cursor.execute(f"SELECT * FROM settings WHERE key='{key}'")
     return self.cursor.fetchone() != None
   
-  def setSettingValue(self, key: str, value: int) -> None:
+  def isSettingEnabled(self, key: str) -> bool:
+    if not self.isSettingExists(key):
+      return False
+
     self.cursor.execute(f"SELECT * FROM settings WHERE key='{key}'")
+    return True if int(self.cursor.fetchone()[1]) == 2 else False
+  
+  def setSettingValue(self, key: str, value: int) -> None:
+    if value != 2 and value != 0:
+      return
+
     if self.isSettingExists(key):
       self.cursor.execute(f"UPDATE settings SET value='{value}' WHERE key='{key}'")
     else:
