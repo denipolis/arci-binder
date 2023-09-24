@@ -24,7 +24,8 @@ class Binder:
         keyboard.add_hotkey(profile[2], self.playProfile, args=(str(profile[1]),))
 
   def playProfile(self, profileName: str):
-    if not utils.getActiveWindowTitle().find("RAGE Multiplayer"):
+    print(utils.getActiveWindowTitle().find("RAGE Multiplayer"))
+    if not self.database.isSettingEnabled('dontCheckForName') and not "RAGE Multiplayer" in utils.getActiveWindowTitle():
         return
 
     profileStrings = self.database.findStringsInProfile(profileName)
