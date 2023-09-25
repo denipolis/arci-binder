@@ -3,8 +3,8 @@ Simple and nice keyboard to chat message bindings maker.
 Made especially for RAGE:MP.
 
 <p float="left">
-<img src="https://i.imgur.com/4SbiijS.png" height="250">
-<img src="https://i.imgur.com/UAkFb5r.png" height="250">
+<img src="https://i.imgur.com/r4chm4N.png" height="250">
+<img src="https://i.imgur.com/Hi00gEs.png" height="250">
 </p>
 ## How to use source code:
 1. Install `Python version 3.7 or further and less than 3.10`
