@@ -1,6 +1,7 @@
 ### ArciBinder
 Simple and nice keyboard to chat message bindings maker.
 Made especially for RAGE:MP.
+![image](https://github.com/denipolis/arci-binder/assets/52839937/3d818e86-c849-455c-ba5c-50932d9231b9)
 
 ![image](https://github.com/denipolis/arci-binder/assets/52839937/e09b6b9e-f7d9-4554-b910-ddfdcf23f75e)
 
