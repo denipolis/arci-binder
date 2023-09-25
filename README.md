@@ -3,7 +3,7 @@ Simple and nice keyboard to chat message bindings maker.
 Made especially for RAGE:MP.
 
 <p float="left">
-<img src="https://i.imgur.com/r4chm4N.png" height="250">
+<img src="https://i.imgur.com/r4chm4N.png" height="255">
 <img src="https://i.imgur.com/Hi00gEs.png" height="250">
 </p>
 ## How to use source code:
