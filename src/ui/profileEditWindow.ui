@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>967</width>
-    <height>503</height>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,8 +52,8 @@ QListWidget {
    <widget class="QPushButton" name="createProfileButton">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>460</y>
+      <x>400</x>
+      <y>470</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -86,8 +86,8 @@ QListWidget {
    <widget class="QLabel" name="shortcutlabel">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>400</y>
+      <x>540</x>
+      <y>410</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -106,12 +106,15 @@ QListWidget {
     <property name="text">
      <string>Клавиша</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QKeySequenceEdit" name="shortcut">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>430</y>
+      <x>540</x>
+      <y>440</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -132,8 +135,8 @@ QListWidget {
    <widget class="QLineEdit" name="profileName">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>430</y>
+      <x>330</x>
+      <y>440</y>
       <width>181</width>
       <height>21</height>
      </rect>
@@ -145,8 +148,8 @@ QListWidget {
    <widget class="QLabel" name="profiileNameLabel">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>400</y>
+      <x>330</x>
+      <y>410</y>
       <width>191</width>
       <height>20</height>
      </rect>
@@ -170,7 +173,7 @@ QListWidget {
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>60</y>
       <width>921</width>
       <height>341</height>
      </rect>
@@ -742,6 +745,42 @@ QListWidget {
     </property>
     <property name="text">
      <string>Редактор</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Текст</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>50</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Задержка</string>
     </property>
    </widget>
   </widget>

@@ -69,6 +69,7 @@ class ProfileEditWindow(QMainWindow):
                     currentRowCooldown.setText(str(profileStrings[i][1])) 
         else:
             self.uuid = uuidlib.uuid4().hex
+            self.ui.createProfileButton.setText('Создать')
 
     def createProfileButtonCallback(self):
         if not self.ui.profileName.text():
@@ -135,8 +136,8 @@ class MainWindow(QMainWindow):
         self.ui.autorunCheckbox.setChecked(utils.isAutoRun())
         self.ui.autorunCheckbox.stateChanged.connect(lambda state: utils.enableAutoRun() if state == 2 else utils.disableAutoRun())
 
-        self.ui.nameCheckbox.setChecked(database.isSettingEnabled('dontCheckForName'))
-        self.ui.nameCheckbox.stateChanged.connect(lambda state: database.setSettingValue('dontCheckForName', state))
+        self.ui.nameCheckbox.setChecked(database.isSettingEnabled('checkFullScreen'))
+        self.ui.nameCheckbox.stateChanged.connect(lambda state: database.setSettingValue('checkFullScreen', state))
 
         for profile in database.findAllProfiles():
             self.ui.listWidget.addItem(profile[0])
@@ -198,7 +199,7 @@ def main():
 
     app.setApplicationName('ArciBinder')
     app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion('1.2.1')
+    app.setApplicationVersion('1.2.2')
     app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
     if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
     

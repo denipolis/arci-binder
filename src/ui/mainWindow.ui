@@ -148,6 +148,9 @@ QPushButton::pressed {
        <height>41</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Профили</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -170,6 +173,9 @@ QPushButton::pressed {
        <width>41</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Настройки</string>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
@@ -202,6 +208,9 @@ QPushButton::pressed {
        <family>Rubik SemiBold</family>
        <pointsize>-1</pointsize>
       </font>
+     </property>
+     <property name="toolTip">
+      <string>GitHub разработчика</string>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
@@ -289,6 +298,9 @@ QPushButton::pressed {
        <pointsize>-1</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>При нажатии крестика приложение будет не выключаться, а скрываться в панель задач.</string>
+     </property>
      <property name="text">
       <string>Прятать приложение в трей при нажатии кнопки &quot;Закрыть&quot;</string>
      </property>
@@ -308,8 +320,11 @@ QPushButton::pressed {
        <pointsize>-1</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Запускает приложение автоматически вместе с системой.</string>
+     </property>
      <property name="text">
-      <string>Запускать приложение вместе с системой (автозапуск)</string>
+      <string>Запускать приложение вместе с системой (автозагрузка)</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="nameCheckbox">
@@ -327,8 +342,11 @@ QPushButton::pressed {
        <pointsize>-1</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Нужно, если вы хотите что бы биндер работал только в игре. Не работает, если игра запущена в окне.</string>
+     </property>
      <property name="text">
-      <string>Использовать бинды не только в RAGE Multiplayer</string>
+      <string>Проверять, открыто ли полноэкранное приложение</string>
      </property>
     </widget>
    </widget>
@@ -368,6 +386,9 @@ QPushButton::pressed {
        <pointsize>-1</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Создать новый профиль</string>
+     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -403,6 +424,9 @@ QPushButton::pressed {
        <pointsize>-1</pointsize>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Изменить выбранный профиль</string>
+     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -437,6 +461,9 @@ QPushButton::pressed {
        <family>Rubik SemiBold</family>
        <pointsize>-1</pointsize>
       </font>
+     </property>
+     <property name="toolTip">
+      <string>Удалить выбранный профиль</string>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
@@ -485,6 +512,9 @@ QPushButton::pressed {
        <width>431</width>
        <height>321</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Список ваших созданных профилей, пусто если нету ни одного созданного профиля.</string>
      </property>
      <property name="styleSheet">
       <string notr="true"/>

@@ -2,8 +2,6 @@
 Simple and nice keyboard to chat message bindings maker.
 Made especially for RAGE:MP.
 
-(для тех у кого не работает - выключите проверку на RAGE MP в настройках)
-
 ![image](https://github.com/denipolis/arci-binder/assets/52839937/e09b6b9e-f7d9-4554-b910-ddfdcf23f75e)
 
 ## How to use source code:
@@ -14,10 +12,10 @@ Made especially for RAGE:MP.
 5. Install `pip` requirements using `pip install -r requirements.txt`
 6. Enjoy!
 
-## Converting .ui (**QT Designer**) to .py:
+## Translating .ui (**QT Designer**) to .py:
 1. Go to root of project.
-2. Execute `tools\compileUI.py`
+2. Execute `tools\translateUI.bat`
 
 ## Building:
 1. Go to root of project.
-2. Execute `tools\build_full.bat`
+2. Execute `tools\build.bat`

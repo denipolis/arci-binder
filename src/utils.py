@@ -3,7 +3,8 @@ import time
 import os
 import winreg as reg
 import sys
-from ctypes import wintypes, windll, create_unicode_buffer
+from ctypes import windll
+import win32gui
 
 def singleKeyPress(key: str) -> None:
     keyboard.press(key)
@@ -14,16 +15,16 @@ def singleKeyPress(key: str) -> None:
 def quit() -> None:
     os._exit(0)
 
-def getActiveWindowTitle() -> str:
-    hWnd = windll.user32.GetForegroundWindow()
-    length = windll.user32.GetWindowTextLengthW(hWnd)
-    buf = create_unicode_buffer(length + 1)
-    windll.user32.GetWindowTextW(hWnd, buf, length + 1)
-    
-    if buf.value:
-        return buf.value
-    else:
-        return "NOTHING"
+def isAppFullScreen():
+    user32 = windll.user32
+    user32.SetProcessDPIAware()
+
+    try:
+        hWnd = user32.GetForegroundWindow()
+        rect = win32gui.GetWindowRect(hWnd)
+        return rect == (0, 0, windll.user32.GetSystemMetrics(0), windll.user32.GetSystemMetrics(1))
+    except:
+        return False
 
 def openURL(link: str) -> None:
     os.system(f"start \"\" {link}")

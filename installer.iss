@@ -6,15 +6,15 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{9D6C1B9B-8B69-4803-9761-F4DA08BBB0B1}
 AppName=ArciBinder
-AppVersion=1.2.1
-;AppVerName=ArciBinder 1.2.1
+AppVersion=1.2.2
+;AppVerName=ArciBinder 1.2.2
 AppPublisher=Denipolis
 DefaultDirName={autopf}\ArciBinder
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=build\
-OutputBaseFilename=ArciBinder_win32_installer
+OutputBaseFilename=arcibinder{#SetupSetting("AppVersion")}_setup
 SetupIconFile=src\ui\images\logo.ico
 Compression=lzma
 SolidCompression=yes

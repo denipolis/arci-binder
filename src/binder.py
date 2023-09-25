@@ -26,7 +26,7 @@ class Binder:
         keyboard.add_hotkey(profile[2], self.playProfile, args=(str(profile[1]),))
 
   def playProfile(self, profileName: str):
-    if self.database.isSettingEnabled('dontCheckForName') or (rageMpTitle in utils.getActiveWindowTitle()):
+    if not self.database.isSettingEnabled('checkFullScreen') or utils.isAppFullScreen():
       profileStrings = self.database.findStringsInProfile(profileName)
 
       for profileString in profileStrings:
