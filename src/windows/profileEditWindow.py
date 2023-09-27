@@ -24,18 +24,32 @@ class Ui_ProfileEditWindow(object):
     def setupUi(self, ProfileEditWindow):
         if not ProfileEditWindow.objectName():
             ProfileEditWindow.setObjectName(u"ProfileEditWindow")
-        ProfileEditWindow.resize(967, 518)
+        ProfileEditWindow.resize(961, 505)
         icon = QIcon()
         icon.addFile(u":/resources/logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         ProfileEditWindow.setWindowIcon(icon)
-        ProfileEditWindow.setStyleSheet(u"QWidget {\n"
-"   background-color: #13171c;\n"
-"   color: #f5f5f5;\n"
-"}\n"
-"\n"
-"QLineEdit {\n"
+        ProfileEditWindow.setStyleSheet(u"QLineEdit {\n"
+"    background-color: #13171c;\n"
 "	border: 2px solid #cfcfcf;\n"
 "	border-radius: 4px;\n"
+"}\n"
+"\n"
+"QKeySequenceEdit {\n"
+"    background-color: #13171c;\n"
+"	border: 2px solid #cfcfcf;\n"
+"	border-radius: 4px;\n"
+"}\n"
+"\n"
+"QWidget {\n"
+"   color: #f5f5f5;\n"
+"   font-family:  Rubik SemiBold;\n"
+"   font-size: 13px;\n"
+"}\n"
+"\n"
+"QListWidget {\n"
+"   background-color: #13171c;\n"
+"	border: 2px solid #cfcfcf;\n"
+"	border-radius: 7px;\n"
 "}\n"
 "\n"
 "QPushButton {\n"
@@ -51,56 +65,44 @@ class Ui_ProfileEditWindow(object):
 "\n"
 "QPushButton::pressed {\n"
 "    background-color: #1d2329;\n"
-"}\n"
-"\n"
-"QListWidget {\n"
-"	border: 2px solid #cfcfcf;\n"
-"	border-radius: 7px;\n"
 "}")
-        self.centralWidget = QWidget(ProfileEditWindow)
-        self.centralWidget.setObjectName(u"centralWidget")
-        self.createProfileButton = QPushButton(self.centralWidget)
+        self.mainWidget = QWidget(ProfileEditWindow)
+        self.mainWidget.setObjectName(u"mainWidget")
+        self.createProfileButton = QPushButton(self.mainWidget)
         self.createProfileButton.setObjectName(u"createProfileButton")
-        self.createProfileButton.setGeometry(QRect(400, 470, 181, 31))
+        self.createProfileButton.setGeometry(QRect(400, 460, 181, 31))
         font = QFont()
-        font.setFamilies([u"Rubik"])
-        font.setPointSize(12)
-        font.setBold(False)
+        font.setFamilies([u"Rubik SemiBold"])
         self.createProfileButton.setFont(font)
         self.createProfileButton.setStyleSheet(u"border-radius: 6px;")
         icon1 = QIcon()
         icon1.addFile(u":/icons/images/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.createProfileButton.setIcon(icon1)
         self.createProfileButton.setIconSize(QSize(18, 18))
-        self.shortcutlabel = QLabel(self.centralWidget)
+        self.shortcutlabel = QLabel(self.mainWidget)
         self.shortcutlabel.setObjectName(u"shortcutlabel")
-        self.shortcutlabel.setGeometry(QRect(540, 410, 91, 21))
-        font1 = QFont()
-        font1.setFamilies([u"Rubik"])
-        font1.setPointSize(14)
-        self.shortcutlabel.setFont(font1)
+        self.shortcutlabel.setGeometry(QRect(540, 410, 91, 16))
+        self.shortcutlabel.setFont(font)
         self.shortcutlabel.setStyleSheet(u"QLabel {\n"
 "	color: rgb(220, 220, 220)\n"
 "}")
         self.shortcutlabel.setAlignment(Qt.AlignCenter)
-        self.shortcut = QKeySequenceEdit(self.centralWidget)
-        self.shortcut.setObjectName(u"shortcut")
-        self.shortcut.setGeometry(QRect(540, 440, 91, 21))
-        font2 = QFont()
-        font2.setFamilies([u"Rubik"])
-        font2.setPointSize(10)
-        self.shortcut.setFont(font2)
-        self.profileName = QLineEdit(self.centralWidget)
+        self.hotkey = QKeySequenceEdit(self.mainWidget)
+        self.hotkey.setObjectName(u"hotkey")
+        self.hotkey.setGeometry(QRect(540, 430, 91, 21))
+        self.hotkey.setFont(font)
+        self.profileName = QLineEdit(self.mainWidget)
         self.profileName.setObjectName(u"profileName")
-        self.profileName.setGeometry(QRect(330, 440, 181, 21))
-        self.profiileNameLabel = QLabel(self.centralWidget)
-        self.profiileNameLabel.setObjectName(u"profiileNameLabel")
-        self.profiileNameLabel.setGeometry(QRect(330, 410, 191, 20))
-        self.profiileNameLabel.setFont(font1)
-        self.profiileNameLabel.setStyleSheet(u"QLabel {\n"
+        self.profileName.setGeometry(QRect(330, 430, 181, 21))
+        self.profileNameLabel = QLabel(self.mainWidget)
+        self.profileNameLabel.setObjectName(u"profileNameLabel")
+        self.profileNameLabel.setGeometry(QRect(330, 410, 181, 16))
+        self.profileNameLabel.setFont(font)
+        self.profileNameLabel.setStyleSheet(u"QLabel {\n"
 "	color: rgb(220, 220, 220)\n"
 "}")
-        self.verticalLayoutWidget = QWidget(self.centralWidget)
+        self.profileNameLabel.setAlignment(Qt.AlignCenter)
+        self.verticalLayoutWidget = QWidget(self.mainWidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(20, 60, 921, 341))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
@@ -114,23 +116,20 @@ class Ui_ProfileEditWindow(object):
         self.label1 = QLabel(self.verticalLayoutWidget)
         self.label1.setObjectName(u"label1")
         self.label1.setEnabled(True)
-        self.label1.setFont(font1)
+        self.label1.setFont(font)
         self.label1.setAlignment(Qt.AlignCenter)
 
         self.group1.addWidget(self.label1)
 
         self.string1 = QLineEdit(self.verticalLayoutWidget)
         self.string1.setObjectName(u"string1")
-        font3 = QFont()
-        font3.setFamilies([u"Rubik"])
-        font3.setBold(False)
-        self.string1.setFont(font3)
+        self.string1.setFont(font)
 
         self.group1.addWidget(self.string1)
 
         self.cooldown1 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown1.setObjectName(u"cooldown1")
-        self.cooldown1.setFont(font3)
+        self.cooldown1.setFont(font)
         self.cooldown1.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.group1.addWidget(self.cooldown1)
@@ -145,23 +144,20 @@ class Ui_ProfileEditWindow(object):
         self.group2.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label2 = QLabel(self.verticalLayoutWidget)
         self.label2.setObjectName(u"label2")
-        font4 = QFont()
-        font4.setFamilies([u"Rubik"])
-        font4.setPointSize(11)
-        self.label2.setFont(font4)
+        self.label2.setFont(font)
         self.label2.setAlignment(Qt.AlignCenter)
 
         self.group2.addWidget(self.label2)
 
         self.string2 = QLineEdit(self.verticalLayoutWidget)
         self.string2.setObjectName(u"string2")
-        self.string2.setFont(font3)
+        self.string2.setFont(font)
 
         self.group2.addWidget(self.string2)
 
         self.cooldown2 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown2.setObjectName(u"cooldown2")
-        self.cooldown2.setFont(font3)
+        self.cooldown2.setFont(font)
         self.cooldown2.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.group2.addWidget(self.cooldown2)
@@ -176,20 +172,20 @@ class Ui_ProfileEditWindow(object):
         self.group3.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label3 = QLabel(self.verticalLayoutWidget)
         self.label3.setObjectName(u"label3")
-        self.label3.setFont(font4)
+        self.label3.setFont(font)
         self.label3.setAlignment(Qt.AlignCenter)
 
         self.group3.addWidget(self.label3)
 
         self.string3 = QLineEdit(self.verticalLayoutWidget)
         self.string3.setObjectName(u"string3")
-        self.string3.setFont(font3)
+        self.string3.setFont(font)
 
         self.group3.addWidget(self.string3)
 
         self.cooldown3 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown3.setObjectName(u"cooldown3")
-        self.cooldown3.setFont(font3)
+        self.cooldown3.setFont(font)
         self.cooldown3.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.group3.addWidget(self.cooldown3)
@@ -204,20 +200,20 @@ class Ui_ProfileEditWindow(object):
         self.group4.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label4 = QLabel(self.verticalLayoutWidget)
         self.label4.setObjectName(u"label4")
-        self.label4.setFont(font4)
+        self.label4.setFont(font)
         self.label4.setAlignment(Qt.AlignCenter)
 
         self.group4.addWidget(self.label4)
 
         self.string4 = QLineEdit(self.verticalLayoutWidget)
         self.string4.setObjectName(u"string4")
-        self.string4.setFont(font3)
+        self.string4.setFont(font)
 
         self.group4.addWidget(self.string4)
 
         self.cooldown4 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown4.setObjectName(u"cooldown4")
-        self.cooldown4.setFont(font3)
+        self.cooldown4.setFont(font)
         self.cooldown4.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.group4.addWidget(self.cooldown4)
@@ -232,20 +228,20 @@ class Ui_ProfileEditWindow(object):
         self.group5.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label5 = QLabel(self.verticalLayoutWidget)
         self.label5.setObjectName(u"label5")
-        self.label5.setFont(font4)
+        self.label5.setFont(font)
         self.label5.setAlignment(Qt.AlignCenter)
 
         self.group5.addWidget(self.label5)
 
         self.string5 = QLineEdit(self.verticalLayoutWidget)
         self.string5.setObjectName(u"string5")
-        self.string5.setFont(font3)
+        self.string5.setFont(font)
 
         self.group5.addWidget(self.string5)
 
         self.cooldown5 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown5.setObjectName(u"cooldown5")
-        self.cooldown5.setFont(font3)
+        self.cooldown5.setFont(font)
         self.cooldown5.setInputMethodHints(Qt.ImhDigitsOnly)
 
         self.group5.addWidget(self.cooldown5)
@@ -260,20 +256,20 @@ class Ui_ProfileEditWindow(object):
         self.group6.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label6 = QLabel(self.verticalLayoutWidget)
         self.label6.setObjectName(u"label6")
-        self.label6.setFont(font4)
+        self.label6.setFont(font)
         self.label6.setAlignment(Qt.AlignCenter)
 
         self.group6.addWidget(self.label6)
 
         self.string6 = QLineEdit(self.verticalLayoutWidget)
         self.string6.setObjectName(u"string6")
-        self.string6.setFont(font3)
+        self.string6.setFont(font)
 
         self.group6.addWidget(self.string6)
 
         self.cooldown6 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown6.setObjectName(u"cooldown6")
-        self.cooldown6.setFont(font3)
+        self.cooldown6.setFont(font)
 
         self.group6.addWidget(self.cooldown6)
 
@@ -287,20 +283,20 @@ class Ui_ProfileEditWindow(object):
         self.group7.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label7 = QLabel(self.verticalLayoutWidget)
         self.label7.setObjectName(u"label7")
-        self.label7.setFont(font4)
+        self.label7.setFont(font)
         self.label7.setAlignment(Qt.AlignCenter)
 
         self.group7.addWidget(self.label7)
 
         self.string7 = QLineEdit(self.verticalLayoutWidget)
         self.string7.setObjectName(u"string7")
-        self.string7.setFont(font3)
+        self.string7.setFont(font)
 
         self.group7.addWidget(self.string7)
 
         self.cooldown7 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown7.setObjectName(u"cooldown7")
-        self.cooldown7.setFont(font3)
+        self.cooldown7.setFont(font)
 
         self.group7.addWidget(self.cooldown7)
 
@@ -314,20 +310,20 @@ class Ui_ProfileEditWindow(object):
         self.group8.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label8 = QLabel(self.verticalLayoutWidget)
         self.label8.setObjectName(u"label8")
-        self.label8.setFont(font4)
+        self.label8.setFont(font)
         self.label8.setAlignment(Qt.AlignCenter)
 
         self.group8.addWidget(self.label8)
 
         self.string8 = QLineEdit(self.verticalLayoutWidget)
         self.string8.setObjectName(u"string8")
-        self.string8.setFont(font3)
+        self.string8.setFont(font)
 
         self.group8.addWidget(self.string8)
 
         self.cooldown8 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown8.setObjectName(u"cooldown8")
-        self.cooldown8.setFont(font3)
+        self.cooldown8.setFont(font)
 
         self.group8.addWidget(self.cooldown8)
 
@@ -341,20 +337,20 @@ class Ui_ProfileEditWindow(object):
         self.group9.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label9 = QLabel(self.verticalLayoutWidget)
         self.label9.setObjectName(u"label9")
-        self.label9.setFont(font4)
+        self.label9.setFont(font)
         self.label9.setAlignment(Qt.AlignCenter)
 
         self.group9.addWidget(self.label9)
 
         self.string9 = QLineEdit(self.verticalLayoutWidget)
         self.string9.setObjectName(u"string9")
-        self.string9.setFont(font3)
+        self.string9.setFont(font)
 
         self.group9.addWidget(self.string9)
 
         self.cooldown9 = QLineEdit(self.verticalLayoutWidget)
         self.cooldown9.setObjectName(u"cooldown9")
-        self.cooldown9.setFont(font3)
+        self.cooldown9.setFont(font)
 
         self.group9.addWidget(self.cooldown9)
 
@@ -362,40 +358,43 @@ class Ui_ProfileEditWindow(object):
 
         self.verticalLayout.addLayout(self.group9)
 
-        self.minimizeButton = QPushButton(self.centralWidget)
-        self.minimizeButton.setObjectName(u"minimizeButton")
-        self.minimizeButton.setGeometry(QRect(880, 10, 31, 31))
-        self.minimizeButton.setFont(font4)
-        self.minimizeButton.setStyleSheet(u"")
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/images/minimize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.minimizeButton.setIcon(icon2)
-        self.closeButton = QPushButton(self.centralWidget)
+        self.closeButton = QPushButton(self.mainWidget)
         self.closeButton.setObjectName(u"closeButton")
         self.closeButton.setGeometry(QRect(920, 10, 31, 31))
-        self.closeButton.setFont(font4)
+        self.closeButton.setFont(font)
         self.closeButton.setStyleSheet(u"")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/x.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.closeButton.setIcon(icon3)
-        self.title = QLabel(self.centralWidget)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/x.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.closeButton.setIcon(icon2)
+        self.title = QLabel(self.mainWidget)
         self.title.setObjectName(u"title")
         self.title.setGeometry(QRect(10, 10, 181, 31))
-        font5 = QFont()
-        font5.setFamilies([u"Rubik"])
-        font5.setPointSize(12)
-        self.title.setFont(font5)
-        self.label = QLabel(self.centralWidget)
+        self.title.setFont(font)
+        self.rowLabel = QLabel(self.mainWidget)
+        self.rowLabel.setObjectName(u"rowLabel")
+        self.rowLabel.setGeometry(QRect(30, 50, 41, 16))
+        self.rowLabel.setFont(font)
+        self.cooldownLabel = QLabel(self.mainWidget)
+        self.cooldownLabel.setObjectName(u"cooldownLabel")
+        self.cooldownLabel.setGeometry(QRect(810, 50, 61, 16))
+        self.cooldownLabel.setFont(font)
+        self.label = QLabel(self.mainWidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(30, 50, 41, 16))
-        font6 = QFont()
-        font6.setPointSize(10)
-        self.label.setFont(font6)
-        self.label_2 = QLabel(self.centralWidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(810, 50, 61, 16))
-        self.label_2.setFont(font6)
-        ProfileEditWindow.setCentralWidget(self.centralWidget)
+        self.label.setGeometry(QRect(0, 0, 961, 501))
+        self.label.setStyleSheet(u"background-color: #13171c;\n"
+"border-radius: 15px;")
+        ProfileEditWindow.setCentralWidget(self.mainWidget)
+        self.label.raise_()
+        self.createProfileButton.raise_()
+        self.shortcutlabel.raise_()
+        self.hotkey.raise_()
+        self.profileName.raise_()
+        self.profileNameLabel.raise_()
+        self.verticalLayoutWidget.raise_()
+        self.closeButton.raise_()
+        self.title.raise_()
+        self.rowLabel.raise_()
+        self.cooldownLabel.raise_()
 
         self.retranslateUi(ProfileEditWindow)
 
@@ -403,15 +402,15 @@ class Ui_ProfileEditWindow(object):
     # setupUi
 
     def retranslateUi(self, ProfileEditWindow):
-        ProfileEditWindow.setWindowTitle(QCoreApplication.translate("ProfileEditWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0444\u0438\u043b\u044f", None))
+        ProfileEditWindow.setWindowTitle(QCoreApplication.translate("ProfileEditWindow", u"ArciBinder - \u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440", None))
         self.createProfileButton.setText(QCoreApplication.translate("ProfileEditWindow", u" \u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.shortcutlabel.setText(QCoreApplication.translate("ProfileEditWindow", u"\u041a\u043b\u0430\u0432\u0438\u0448\u0430", None))
 #if QT_CONFIG(tooltip)
-        self.shortcut.setToolTip("")
+        self.hotkey.setToolTip("")
 #endif // QT_CONFIG(tooltip)
-        self.shortcut.setKeySequence("")
+        self.hotkey.setKeySequence("")
         self.profileName.setText("")
-        self.profiileNameLabel.setText(QCoreApplication.translate("ProfileEditWindow", u" \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0444\u0438\u043b\u044f", None))
+        self.profileNameLabel.setText(QCoreApplication.translate("ProfileEditWindow", u" \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0444\u0438\u043b\u044f", None))
         self.label1.setText(QCoreApplication.translate("ProfileEditWindow", u"1", None))
         self.string1.setText("")
         self.cooldown1.setText(QCoreApplication.translate("ProfileEditWindow", u"0", None))
@@ -431,10 +430,10 @@ class Ui_ProfileEditWindow(object):
         self.cooldown8.setText(QCoreApplication.translate("ProfileEditWindow", u"0", None))
         self.label9.setText(QCoreApplication.translate("ProfileEditWindow", u"9", None))
         self.cooldown9.setText(QCoreApplication.translate("ProfileEditWindow", u"0", None))
-        self.minimizeButton.setText("")
         self.closeButton.setText("")
         self.title.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440", None))
-        self.label.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0422\u0435\u043a\u0441\u0442", None))
-        self.label_2.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0417\u0430\u0434\u0435\u0440\u0436\u043a\u0430", None))
+        self.rowLabel.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0422\u0435\u043a\u0441\u0442", None))
+        self.cooldownLabel.setText(QCoreApplication.translate("ProfileEditWindow", u"\u0417\u0430\u0434\u0435\u0440\u0436\u043a\u0430", None))
+        self.label.setText("")
     # retranslateUi
 
