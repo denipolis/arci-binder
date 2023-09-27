@@ -35,7 +35,7 @@ class ProfileEditWindow(QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.ui.createProfileButton.clicked.connect(lambda: self.createProfileButtonCallback())
         self.ui.closeButton.clicked.connect(lambda: ( self.hide(), mainWindow.show() ))
-        self.ui.minimizeButton.clicked.connect(lambda: self.hide())
+        self.ui.hotkey.keySequenceChanged.connect(lambda: self.ui.hotkey.setKeySequence(self.ui.hotkey.keySequence().toString().split(',')[0]) if self.ui.hotkey.keySequence().count() > 1 else None)
         
     def __init__(self):
         super(ProfileEditWindow, self).__init__()
@@ -44,7 +44,7 @@ class ProfileEditWindow(QMainWindow):
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.show: Callable[[str], None] = lambda uuid=None : (self.rebuildUI(), self.__showWithUuid(uuid))
+        self.show: Callable[[str], None] = lambda uuid = None : ( self.rebuildUI(), self.__showWithUuid(uuid) )
 
     def __showWithUuid(self, uuid: str) -> None:
         self.showNormal()
@@ -59,7 +59,7 @@ class ProfileEditWindow(QMainWindow):
 
             self.ui.createProfileButton.setText('Изменить')
             self.ui.profileName.setText(profileName)
-            self.ui.shortcut.setKeySequence(profileHotkey)
+            self.ui.hotkey.setKeySequence(profileHotkey)
 
             for i in range(0, len(profileStrings)):
                 currentRowString = getattr(editWindow.ui, f'string{i+1}')
@@ -77,7 +77,7 @@ class ProfileEditWindow(QMainWindow):
             QMessageBox(QMessageBox.Icon.Critical, "ArciBinder", "Вы забыли ввести название профиля!", QMessageBox.StandardButton.Ok).exec()
             return
 
-        hotkey = self.ui.shortcut.keySequence().toString().split(',')[0]
+        hotkey = self.ui.hotkey.keySequence().toString().split(',')[0]
         profileWithHotkey = database.findProfileByHotkey(hotkey)
         
         if database.isProfileExistsByUuid(self.uuid):
@@ -96,8 +96,8 @@ class ProfileEditWindow(QMainWindow):
                 database.addStringToProfile(self.uuid, currentRowString, int(currentRowCooldown))
 
         binder.updateProfiles()
-        self.hide()
         mainWindow.show()
+        self.hide()
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.previousPosition = event.globalPosition()
@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
 
         self.hide()
         
-        trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", msecs=1500)
+        trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", QIcon(u":/icons/images/logo32x32.png"), 1500)
         
     def deleteProfileCallback(self):
         answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
@@ -201,8 +201,8 @@ def main():
 
     app.setApplicationName('ArciBinder')
     app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion('1.2.2')
-    app.setWindowIcon(QIcon(os.path.join(basedir, "ui/images/logo.ico")))
+    app.setApplicationVersion('1.3')
+    app.setWindowIcon(QIcon(u":/icons/images/logo32x32.png"))
     if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
     
     mainWindow.show()

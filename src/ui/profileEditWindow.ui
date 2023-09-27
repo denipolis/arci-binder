@@ -117,7 +117,7 @@ QPushButton::pressed {
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QKeySequenceEdit" name="shortcut">
+   <widget class="QKeySequenceEdit" name="hotkey">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -152,12 +152,12 @@ QPushButton::pressed {
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="profiileNameLabel">
+   <widget class="QLabel" name="profileNameLabel">
     <property name="geometry">
      <rect>
       <x>330</x>
       <y>410</y>
-      <width>191</width>
+      <width>181</width>
       <height>16</height>
      </rect>
     </property>
@@ -174,6 +174,9 @@ QPushButton::pressed {
     </property>
     <property name="text">
      <string> Название профиля</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -665,32 +668,6 @@ QPushButton::pressed {
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="minimizeButton">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>10</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Rubik SemiBold</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/icons/images/minimize-2.svg</normaloff>:/icons/images/minimize-2.svg</iconset>
-    </property>
-   </widget>
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
@@ -794,11 +771,10 @@ border-radius: 15px;</string>
    <zorder>label</zorder>
    <zorder>createProfileButton</zorder>
    <zorder>shortcutlabel</zorder>
-   <zorder>shortcut</zorder>
+   <zorder>hotkey</zorder>
    <zorder>profileName</zorder>
-   <zorder>profiileNameLabel</zorder>
+   <zorder>profileNameLabel</zorder>
    <zorder>verticalLayoutWidget</zorder>
-   <zorder>minimizeButton</zorder>
    <zorder>closeButton</zorder>
    <zorder>title</zorder>
    <zorder>rowLabel</zorder>
