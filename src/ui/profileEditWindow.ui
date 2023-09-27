@@ -6,26 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>967</width>
-    <height>518</height>
+    <width>961</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Редактирование профиля</string>
+   <string>ArciBinder - Редактор</string>
   </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>:/resources/logo.ico</normaloff>:/resources/logo.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
-   background-color: #13171c;
-   color: #f5f5f5;
-}
-
-QLineEdit {
+   <string notr="true">QLineEdit {
+    background-color: #13171c;
 	border: 2px solid #cfcfcf;
 	border-radius: 4px;
+}
+
+QKeySequenceEdit {
+    background-color: #13171c;
+	border: 2px solid #cfcfcf;
+	border-radius: 4px;
+}
+
+QWidget {
+   color: #f5f5f5;
+   font-family:  Rubik SemiBold;
+   font-size: 13px;
+}
+
+QListWidget {
+   background-color: #13171c;
+	border: 2px solid #cfcfcf;
+	border-radius: 7px;
 }
 
 QPushButton {
@@ -41,29 +55,22 @@ QPushButton::hover {
 
 QPushButton::pressed {
     background-color: #1d2329;
-}
-
-QListWidget {
-	border: 2px solid #cfcfcf;
-	border-radius: 7px;
 }</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="mainWidget">
    <widget class="QPushButton" name="createProfileButton">
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>470</y>
+      <y>460</y>
       <width>181</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>12</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -89,13 +96,13 @@ QListWidget {
       <x>540</x>
       <y>410</y>
       <width>91</width>
-      <height>21</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>14</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -114,15 +121,15 @@ QListWidget {
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>440</y>
+      <y>430</y>
       <width>91</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>10</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="toolTip">
@@ -136,7 +143,7 @@ QListWidget {
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>440</y>
+      <y>430</y>
       <width>181</width>
       <height>21</height>
      </rect>
@@ -151,13 +158,13 @@ QListWidget {
       <x>330</x>
       <y>410</y>
       <width>191</width>
-      <height>20</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>14</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -209,8 +216,8 @@ QListWidget {
          </property>
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>14</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -225,9 +232,8 @@ QListWidget {
         <widget class="QLineEdit" name="string1">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -239,9 +245,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown1">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="inputMethodHints">
@@ -266,8 +271,8 @@ QListWidget {
         <widget class="QLabel" name="label2">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -282,9 +287,8 @@ QListWidget {
         <widget class="QLineEdit" name="string2">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -293,9 +297,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown2">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="inputMethodHints">
@@ -320,8 +323,8 @@ QListWidget {
         <widget class="QLabel" name="label3">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -336,9 +339,8 @@ QListWidget {
         <widget class="QLineEdit" name="string3">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -347,9 +349,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown3">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="inputMethodHints">
@@ -374,8 +375,8 @@ QListWidget {
         <widget class="QLabel" name="label4">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -390,9 +391,8 @@ QListWidget {
         <widget class="QLineEdit" name="string4">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -401,9 +401,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown4">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="inputMethodHints">
@@ -428,8 +427,8 @@ QListWidget {
         <widget class="QLabel" name="label5">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -444,9 +443,8 @@ QListWidget {
         <widget class="QLineEdit" name="string5">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -455,9 +453,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown5">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="inputMethodHints">
@@ -482,8 +479,8 @@ QListWidget {
         <widget class="QLabel" name="label6">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -498,9 +495,8 @@ QListWidget {
         <widget class="QLineEdit" name="string6">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -509,9 +505,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown6">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -533,8 +528,8 @@ QListWidget {
         <widget class="QLabel" name="label7">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -549,9 +544,8 @@ QListWidget {
         <widget class="QLineEdit" name="string7">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -560,9 +554,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown7">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -584,8 +577,8 @@ QListWidget {
         <widget class="QLabel" name="label8">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -600,9 +593,8 @@ QListWidget {
         <widget class="QLineEdit" name="string8">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -611,9 +603,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown8">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -635,8 +626,8 @@ QListWidget {
         <widget class="QLabel" name="label9">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <pointsize>11</pointsize>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -651,9 +642,8 @@ QListWidget {
         <widget class="QLineEdit" name="string9">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
         </widget>
@@ -662,9 +652,8 @@ QListWidget {
         <widget class="QLineEdit" name="cooldown9">
          <property name="font">
           <font>
-           <family>Rubik</family>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>Rubik SemiBold</family>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="text">
@@ -687,8 +676,8 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -713,8 +702,8 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>11</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -739,15 +728,15 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <family>Rubik</family>
-      <pointsize>12</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Редактор</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="rowLabel">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -758,14 +747,15 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Текст</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="cooldownLabel">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -776,13 +766,43 @@ QListWidget {
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <family>Rubik SemiBold</family>
+      <pointsize>-1</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Задержка</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>961</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #13171c;
+border-radius: 15px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>createProfileButton</zorder>
+   <zorder>shortcutlabel</zorder>
+   <zorder>shortcut</zorder>
+   <zorder>profileName</zorder>
+   <zorder>profiileNameLabel</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>minimizeButton</zorder>
+   <zorder>closeButton</zorder>
+   <zorder>title</zorder>
+   <zorder>rowLabel</zorder>
+   <zorder>cooldownLabel</zorder>
   </widget>
  </widget>
  <resources>

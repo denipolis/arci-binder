@@ -43,6 +43,7 @@ class ProfileEditWindow(QMainWindow):
         self.rebuildUI()
 
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.show: Callable[[str], None] = lambda uuid=None : (self.rebuildUI(), self.__showWithUuid(uuid))
 
     def __showWithUuid(self, uuid: str) -> None:
@@ -144,9 +145,10 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.ui = Ui_MainWindow()
         self.rebuildUI()
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.show = lambda: ( self.rebuildUI(), self.showNormal() )
     
     def handleListWidgetClick(self):
