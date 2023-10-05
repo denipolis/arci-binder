@@ -22,7 +22,7 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "build\dist\main\arcibinder_win32.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\dist\main\arcibinder_win32.exe"; DestDir:  "{app}"; Flags: ignoreversion
 Source: "build\dist\main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
