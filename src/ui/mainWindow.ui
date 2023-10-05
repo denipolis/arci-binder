@@ -172,11 +172,34 @@ border-bottom-right-radius: 15px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QCheckBox" name="updateCheckbox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Нужно, если вы хотите что бы биндер работал только в игре. Не работает, если игра запущена в окне.</string>
+     </property>
+     <property name="text">
+      <string>Не проверять на наличие новых обновлений при запуске</string>
+     </property>
+    </widget>
     <zorder>settingsWidgetBackground</zorder>
     <zorder>settingsTitle</zorder>
     <zorder>trayCheckbox</zorder>
     <zorder>autorunCheckbox</zorder>
     <zorder>nameCheckbox</zorder>
+    <zorder>updateCheckbox</zorder>
    </widget>
    <widget class="QWidget" name="profilesWidget" native="true">
     <property name="enabled">
@@ -587,6 +610,11 @@ border-bottom-left-radius: 15px;</string>
       <normaloff>:/icons/images/x.svg</normaloff>:/icons/images/x.svg</iconset>
     </property>
    </widget>
+   <zorder>profilesWidget</zorder>
+   <zorder>settingsWidget</zorder>
+   <zorder>minimizeButton</zorder>
+   <zorder>navigationWidget</zorder>
+   <zorder>closeButton</zorder>
   </widget>
  </widget>
  <resources>

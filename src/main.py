@@ -3,6 +3,7 @@ import sys
 import uuid as uuidlib
 import os
 
+import configparser 
 import utils
 
 from PySide6.QtCore import Qt, QPointF
@@ -16,6 +17,8 @@ from tray import TrayIcon
 from database import Database
 from binder import Binder
 
+from updater import Updater
+
 from typing import Callable
 from enum import Enum
 import windows.resources_rc
@@ -27,6 +30,7 @@ basedir = os.path.dirname(__file__)
 
 database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'))
 binder = Binder(database)
+updater = Updater()
 app = QApplication(sys.argv)
 
 class ProfileEditWindow(QMainWindow):
@@ -121,7 +125,7 @@ class MainWindow(QMainWindow):
         self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteProfileCallback())
         self.ui.editProfileButton.clicked.connect(lambda: editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text())))
 
-        self.ui.adButton.clicked.connect(lambda: utils.openURL("https://github.com/denipolis"))
+        self.ui.adButton.clicked.connect(lambda: utils.openURL("https://github.com/denipolis/arci-binder/"))
 
         self.ui.closeButton.clicked.connect(lambda: self.closeButtonCallback())
         self.ui.minimizeButton.clicked.connect(lambda: self.closeButtonCallback())
@@ -139,6 +143,9 @@ class MainWindow(QMainWindow):
 
         self.ui.nameCheckbox.setChecked(database.isSettingEnabled('checkFullScreen'))
         self.ui.nameCheckbox.stateChanged.connect(lambda state: database.setSettingValue('checkFullScreen', state))
+        
+        self.ui.updateCheckbox.setChecked(database.isSettingEnabled('dontCheckForUpdates'))
+        self.ui.updateCheckbox.stateChanged.connect(lambda state: database.setSettingValue('dontCheckForUpdates', state))
 
         for profile in database.findAllProfiles():
             self.ui.listWidget.addItem(profile[0])
@@ -197,15 +204,23 @@ mainWindow = MainWindow()
 trayIcon = TrayIcon(mainWindow)
 
 def main():
+    config = configparser.ConfigParser()
+    config.read('config')
+
     binder.updateProfiles()
 
     app.setApplicationName('ArciBinder')
     app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion('1.3')
+    app.setApplicationVersion(config['Build']['Version'])
     app.setWindowIcon(QIcon(u":/icons/images/logo32x32.png"))
     if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
     
     mainWindow.show()
+
+    if updater.isUpdateAvailable() and not database.isSettingEnabled('dontCheckForUpdates'):
+        answer = QMessageBox(QMessageBox.Icon.Information, "ArciBinder", f"Ухты! С момента последнего запуска было найдено новое обновление.\nНажмите \"Да\", если хотите перейти на страницу для скачивания!", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
+        if answer == QMessageBox.StandardButton.Yes:
+            utils.openURL('https://github.com/denipolis/arci-binder/releases/')
 
     sys.exit(app.exec())
 

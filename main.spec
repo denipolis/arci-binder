@@ -1,4 +1,5 @@
 import PyInstaller.config
+
 PyInstaller.config.CONF['workpath'] = "build\\workcache"
 PyInstaller.config.CONF['distpath'] = "build\\dist"
 PyInstaller.config.CONF['runtime-tmpdir'] = "build\\runcache"
@@ -6,6 +7,7 @@ PyInstaller.config.CONF['runtime-tmpdir'] = "build\\runcache"
 # -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
+
 
 a = Analysis(
     ['src/main.py'],
