@@ -1,7 +1,8 @@
 import sqlite3
 import os
+from patterns.singleton import Singleton
 
-class Database:
+class Database(metaclass=Singleton):
   def __init__(self, pathToFile):
     self.database = sqlite3.connect(pathToFile, check_same_thread = False)
     self.cursor = self.database.cursor()

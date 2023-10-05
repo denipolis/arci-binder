@@ -3,12 +3,11 @@ import sys
 import uuid as uuidlib
 import os
 
-import configparser 
 import utils
 
 from PySide6.QtCore import Qt, QPointF
-from PySide6.QtGui import QIcon, QMouseEvent, QFontDatabase, QFont
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QCheckBox
+from PySide6.QtGui import QIcon, QMouseEvent, QFontDatabase
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from windows.mainWindow import Ui_MainWindow
 from windows.profileEditWindow import Ui_ProfileEditWindow
@@ -17,6 +16,7 @@ from tray import TrayIcon
 from database import Database
 from binder import Binder
 
+from config import Config
 from updater import Updater
 
 from typing import Callable
@@ -31,6 +31,7 @@ basedir = os.path.dirname(__file__)
 database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder.db'))
 binder = Binder(database)
 updater = Updater()
+config = Config()
 app = QApplication(sys.argv)
 
 class ProfileEditWindow(QMainWindow):
@@ -204,14 +205,11 @@ mainWindow = MainWindow()
 trayIcon = TrayIcon(mainWindow)
 
 def main():
-    config = configparser.ConfigParser()
-    config.read('config')
-
     binder.updateProfiles()
 
-    app.setApplicationName('ArciBinder')
-    app.setApplicationDisplayName('ArciBinder')
-    app.setApplicationVersion(config['Build']['Version'])
+    app.setApplicationName(f'ArciBinder {config.getVersion()}')
+    app.setApplicationDisplayName(f'ArciBinder {config.getVersion()}')
+    app.setApplicationVersion(config.getVersion())
     app.setWindowIcon(QIcon(u":/icons/images/logo32x32.png"))
     if QFontDatabase.addApplicationFont(u":/fonts/fonts/Rubik-SemiBold.ttf") < 0: print('Unable to load font!')
     
