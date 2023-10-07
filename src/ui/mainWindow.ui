@@ -697,8 +697,8 @@ border-bottom-left-radius: 15px;</string>
       <normaloff>:/icons/images/x.svg</normaloff>:/icons/images/x.svg</iconset>
     </property>
    </widget>
-   <zorder>profilesWidget</zorder>
    <zorder>settingsWidget</zorder>
+   <zorder>profilesWidget</zorder>
    <zorder>navigationWidget</zorder>
    <zorder>minimizeButton</zorder>
    <zorder>closeButton</zorder>
