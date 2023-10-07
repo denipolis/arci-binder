@@ -6,7 +6,7 @@ class Config(metaclass=Singleton):
   _config = configparser.ConfigParser()
 
   def __init__(self):
-    self._config.read('config')
+    self._config.read(os.path.join(os.getcwd(), 'config'))
   
   def getVersion(self):
     try:

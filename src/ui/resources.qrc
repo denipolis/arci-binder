@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="icons">
+    <file>images/download.svg</file>
+    <file>images/refresh-ccw.svg</file>
+    <file>images/upload.svg</file>
     <file>images/minimize-2.svg</file>
     <file>images/x.svg</file>
     <file>images/github.svg</file>

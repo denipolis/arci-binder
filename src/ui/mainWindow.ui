@@ -91,7 +91,7 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="trayCheckbox">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>60</y>
        <width>511</width>
        <height>21</height>
@@ -113,7 +113,7 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="autorunCheckbox">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>80</y>
        <width>511</width>
        <height>21</height>
@@ -135,7 +135,7 @@ QPushButton::pressed {
     <widget class="QCheckBox" name="nameCheckbox">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>100</y>
        <width>511</width>
        <height>21</height>
@@ -175,7 +175,7 @@ border-bottom-right-radius: 15px;</string>
     <widget class="QCheckBox" name="updateCheckbox">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>120</y>
        <width>511</width>
        <height>21</height>
@@ -194,12 +194,60 @@ border-bottom-right-radius: 15px;</string>
       <string>Не проверять на наличие новых обновлений при запуске</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="reloadBinderButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>381</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string> Перезагрузить обработчик клавиш</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/refresh-ccw.svg</normaloff>:/icons/images/refresh-ccw.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="exportProfilesButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>381</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string> Экспортировать все профили в .abp файлы</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/upload.svg</normaloff>:/icons/images/upload.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+    </widget>
     <zorder>settingsWidgetBackground</zorder>
     <zorder>settingsTitle</zorder>
     <zorder>trayCheckbox</zorder>
     <zorder>autorunCheckbox</zorder>
     <zorder>nameCheckbox</zorder>
     <zorder>updateCheckbox</zorder>
+    <zorder>reloadBinderButton</zorder>
+    <zorder>exportProfilesButton</zorder>
    </widget>
    <widget class="QWidget" name="profilesWidget" native="true">
     <property name="enabled">
@@ -261,7 +309,7 @@ border-bottom-right-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>150</y>
+       <y>220</y>
        <width>60</width>
        <height>60</height>
       </rect>
@@ -299,7 +347,7 @@ border-bottom-right-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>220</y>
+       <y>290</y>
        <width>60</width>
        <height>60</height>
       </rect>
@@ -405,11 +453,50 @@ border-bottom-right-radius: 15px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="loadProfileButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>150</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Rubik SemiBold</family>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Загрузить профиль из файла .abp (ArciBinder Profile)</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/images/upload.svg</normaloff>:/icons/images/upload.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
     <zorder>profilesWidgetBackground</zorder>
     <zorder>listWidget</zorder>
-    <zorder>createProfileButton</zorder>
-    <zorder>editProfileButton</zorder>
     <zorder>deleteProfileButton</zorder>
+    <zorder>createProfileButton</zorder>
+    <zorder>loadProfileButton</zorder>
+    <zorder>editProfileButton</zorder>
     <zorder>profilesTitle</zorder>
     <zorder>label</zorder>
    </widget>
@@ -612,8 +699,8 @@ border-bottom-left-radius: 15px;</string>
    </widget>
    <zorder>profilesWidget</zorder>
    <zorder>settingsWidget</zorder>
-   <zorder>minimizeButton</zorder>
    <zorder>navigationWidget</zorder>
+   <zorder>minimizeButton</zorder>
    <zorder>closeButton</zorder>
   </widget>
  </widget>

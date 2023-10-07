@@ -7,7 +7,7 @@ import utils
 
 from PySide6.QtCore import Qt, QPointF
 from PySide6.QtGui import QIcon, QMouseEvent, QFontDatabase
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QFileDialog
 
 from windows.mainWindow import Ui_MainWindow
 from windows.profileEditWindow import Ui_ProfileEditWindow
@@ -15,10 +15,9 @@ from windows.profileEditWindow import Ui_ProfileEditWindow
 from tray import TrayIcon
 from database import Database
 from binder import Binder
-
 from config import Config
 from updater import Updater
-
+from abpHandler import ABPHandler
 from typing import Callable
 from enum import Enum
 import windows.resources_rc
@@ -32,6 +31,7 @@ database = Database(os.path.join(os.getenv('APPDATA'), 'arcibinder', 'arcibinder
 binder = Binder(database)
 updater = Updater()
 config = Config()
+profileReader = ABPHandler(database)
 app = QApplication(sys.argv)
 
 class ProfileEditWindow(QMainWindow):
@@ -123,7 +123,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui.createProfileButton.clicked.connect(lambda: self.createButtonCallback())
-        self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteProfileCallback())
+        self.ui.deleteProfileButton.clicked.connect(lambda: self.deleteButtonCallback())
+        self.ui.loadProfileButton.clicked.connect(lambda: self.loadButtonCallback())
         self.ui.editProfileButton.clicked.connect(lambda: editWindow.show(database.findUuidByName(self.ui.listWidget.currentItem().text())))
 
         self.ui.adButton.clicked.connect(lambda: utils.openURL("https://github.com/denipolis/arci-binder/"))
@@ -132,6 +133,9 @@ class MainWindow(QMainWindow):
         self.ui.minimizeButton.clicked.connect(lambda: self.closeButtonCallback())
         self.ui.profilesButton.clicked.connect(lambda: self.changeWidget(MainMenuType.PROFILES))
         self.ui.settingsButton.clicked.connect(lambda: self.changeWidget(MainMenuType.SETTINGS))
+
+        self.ui.reloadBinderButton.clicked.connect(lambda: binder.updateProfiles())
+        self.ui.exportProfilesButton.clicked.connect(lambda: self.exportButtonCallback())
 
         self.ui.listWidget.clear()
         self.ui.listWidget.clicked.connect(lambda: self.handleListWidgetClick())
@@ -163,6 +167,25 @@ class MainWindow(QMainWindow):
         self.ui.editProfileButton.setDisabled(self.ui.listWidget.currentItem() == None)
         self.ui.deleteProfileButton.setDisabled(self.ui.listWidget.currentItem() == None)
 
+    def loadButtonCallback(self):
+        fileDialog = QFileDialog()
+        fileDialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+        fileDialog.setNameFilter("ArciBinder Profiles (*.abp)")
+        fileDialog.setWindowTitle("Выберите профиль (.abp), который хотите импортировать")
+        fileDialog.exec()
+
+        profileReader.loadProfileByPath(fileDialog.selectedFiles()[0])
+        self.rebuildUI()
+        binder.updateProfiles()
+
+    def exportButtonCallback(self):
+        fileDialog = QFileDialog()
+        fileDialog.setFileMode(QFileDialog.FileMode.Directory)
+        fileDialog.setWindowTitle("Выберите папку, куда экспортировать профили")
+        fileDialog.exec()
+
+        profileReader.exportAllProfilesInFolder(fileDialog.selectedFiles()[0])
+
     def createButtonCallback(self):
         self.hide()
         editWindow.show()
@@ -175,7 +198,7 @@ class MainWindow(QMainWindow):
         
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", QIcon(u":/icons/images/logo32x32.png"), 1500)
         
-    def deleteProfileCallback(self):
+    def deleteButtonCallback(self):
         answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
 
         if answer == QMessageBox.StandardButton.Yes:
@@ -216,7 +239,7 @@ def main():
     mainWindow.show()
 
     if updater.isUpdateAvailable() and not database.isSettingEnabled('dontCheckForUpdates'):
-        answer = QMessageBox(QMessageBox.Icon.Information, "ArciBinder", f"Ухты! С момента последнего запуска было найдено новое обновление.\nНажмите \"Да\", если хотите перейти на страницу для скачивания!", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
+        answer = QMessageBox(QMessageBox.Icon.Information, "ArciBinder", f"С момента последнего запуска было найдено новое обновление.\nНажмите \"Да\", если хотите перейти на страницу для скачивания!", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
         if answer == QMessageBox.StandardButton.Yes:
             utils.openURL('https://github.com/denipolis/arci-binder/releases/')
 
