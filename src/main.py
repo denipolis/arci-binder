@@ -79,7 +79,7 @@ class ProfileEditWindow(QMainWindow):
 
     def createProfileButtonCallback(self):
         if not self.ui.profileName.text():
-            QMessageBox(QMessageBox.Icon.Critical, "ArciBinder", "Вы забыли ввести название профиля!", QMessageBox.StandardButton.Ok).exec()
+            QMessageBox(QMessageBox.Icon.Critical, "Создание профиля", "Вы забыли ввести название профиля!", QMessageBox.StandardButton.Ok).exec()
             return
 
         hotkey = self.ui.hotkey.keySequence().toString().split(',')[0]
@@ -89,7 +89,7 @@ class ProfileEditWindow(QMainWindow):
             database.deleteProfile(self.uuid)
 
         if database.isProfileExistsByHotkey(hotkey):
-            QMessageBox(QMessageBox.Icon.Critical, "ArciBinder", f"Выбранная клавиша уже занята!\nУдалите профиль \"{profileWithHotkey[0]}\" или измените клавишу.", QMessageBox.StandardButton.Ok).exec()
+            QMessageBox(QMessageBox.Icon.Critical, "Создание профиля", f"Выбранная клавиша уже занята!\nУдалите профиль \"{profileWithHotkey[0]}\" или измените клавишу.", QMessageBox.StandardButton.Ok).exec()
             return
 
         database.createProfile(self.ui.profileName.text(), self.uuid, hotkey)
@@ -199,7 +199,7 @@ class MainWindow(QMainWindow):
         trayIcon.showMessage("ArciBinder", "Биндер работает в фоновом режиме. Его можно найти в трее.", QIcon(u":/icons/images/logo32x32.png"), 1500)
         
     def deleteButtonCallback(self):
-        answer = QMessageBox(QMessageBox.Icon.Question, "ArciBinder", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
+        answer = QMessageBox(QMessageBox.Icon.Question, "Удаление профиля", f"Вы действительно хотите удалить профиль \"{self.ui.listWidget.currentItem().text()}\"?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
 
         if answer == QMessageBox.StandardButton.Yes:
             database.deleteProfile(database.findUuidByName(self.ui.listWidget.currentItem().text()))
@@ -239,7 +239,7 @@ def main():
     mainWindow.show()
 
     if updater.isUpdateAvailable() and not database.isSettingEnabled('dontCheckForUpdates'):
-        answer = QMessageBox(QMessageBox.Icon.Information, "ArciBinder", f"С момента последнего запуска было найдено новое обновление.\nНажмите \"Да\", если хотите перейти на страницу для скачивания!", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
+        answer = QMessageBox(QMessageBox.Icon.Information, "Обновление", f"С момента последнего запуска было найдено новое обновление.\nНажмите \"Да\", если хотите перейти на страницу для скачивания!", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No).exec()
         if answer == QMessageBox.StandardButton.Yes:
             utils.openURL('https://github.com/denipolis/arci-binder/releases/')
 
