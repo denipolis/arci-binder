@@ -32,20 +32,25 @@ def openURL(link: str) -> None:
 def enableAutoRun() -> None:
     currentAppPath = sys.argv[0]
 
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_SET_VALUE)
-    reg.SetValueEx(key, "ArciBinder", 0, reg.REG_SZ, currentAppPath)
-    key.Close()
+    try:
+        key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_SET_VALUE)
+        reg.SetValueEx(key, "ArciBinder", 0, reg.REG_SZ, currentAppPath)
+        key.Close()
+    except Exception as e:
+        print(e.message)
 
 def disableAutoRun() -> None:
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_WRITE)
-    reg.DeleteValue(key, "ArciBinder")
-    key.Close()
+    try:
+        key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_WRITE)
+        reg.DeleteValue(key, "ArciBinder")
+        key.Close()
+    except Exception as e:
+        print(e.mesasge)
 
 def isAutoRun() -> bool:
-    key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_QUERY_VALUE)
-    
     try:
+        key = reg.OpenKey(reg.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, reg.KEY_QUERY_VALUE)
         reg.QueryValueEx(key, "ArciBinder")
         return True
-    except:
+    except Exception as e:
         return False
